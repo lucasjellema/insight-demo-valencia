@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm">
-    <dgm:gService name="ArtistProposalAPI">
+    <dgm:gService name="SendInArtistProposal-SOAPProxyService">
         <dgm:body borderWidth="2" arcRad="20" X="21" Y="41" width="137" height="54">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
@@ -8,11 +8,11 @@
         <dgm:shadow arcRad="20" X="11" Y="34" width="156" height="68">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
-        <dgm:outputPort name="ArtistProposalAPI" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
-        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/RestAdapterService20x20px.png" X="7" Y="4" width="20" height="20"/>
+        <dgm:outputPort name="SendInArtistProposal-SOAPProxyService" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:nodeIcon URI="/oracle/sb/tooling/ide/sca/internal/icons/icon_transport_http_20x20.png" X="7" Y="4" width="20" height="20"/>
         <dgm:operations/>
     </dgm:gService>
-    <dgm:gReference name="SendInArtistProposalBusinessService">
+    <dgm:gReference name="SendInArtistProposalSOA-BusinessService">
         <dgm:body borderWidth="2" arcRad="20" X="676" Y="41" width="136" height="54">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
@@ -20,11 +20,11 @@
         <dgm:shadow arcRad="20" X="666" Y="34" width="156" height="68">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
-        <dgm:inputPort name="SendInArtistProposalBusinessService" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:inputPort name="SendInArtistProposalSOA-BusinessService" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
         <dgm:nodeIcon URI="/oracle/sb/tooling/ide/sca/internal/icons/icon_transport_http_20x20.png" X="14" Y="4" width="20" height="20"/>
         <dgm:operations/>
     </dgm:gReference>
-    <dgm:gComponent name="ArtistProposalAPIPipeline">
+    <dgm:gComponent name="SendInArtistProposal-SOAP-Pipeline">
         <dgm:body borderWidth="2" arcRad="20" X="352" Y="26" width="130" height="61">
             <dgm:borderColor r="109" g="136" b="65"/>
             <dgm:lightBgColor r="201" g="224" b="155"/>
@@ -34,15 +34,15 @@
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="__service__" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
-        <dgm:outputPort name="businessservice.-757567340.SendInArtistProposalBusinessService" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
+        <dgm:outputPort name="businessservice.1598013022.SendInArtistProposalSOA-BusinessService" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
         <dgm:nodeIcon URI="/oracle/sb/tooling/ide/sca/internal/icons/icon_pipeline_20x20.gif" X="10" Y="4" width="20" height="20"/>
     </dgm:gComponent>
-    <dgm:gWireLink source="ArtistProposalAPI" target="ArtistProposalAPIPipeline/__service__" width="2">
+    <dgm:gWireLink source="SendInArtistProposal-SOAPProxyService" target="SendInArtistProposal-SOAP-Pipeline/__service__" width="2">
         <dgm:gSegment X1="168" Y1="51" X2="342" Y2="51"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
-    <dgm:gWireLink source="ArtistProposalAPIPipeline/businessservice.-757567340.SendInArtistProposalBusinessService" target="SendInArtistProposalBusinessService" width="2">
+    <dgm:gWireLink source="SendInArtistProposal-SOAP-Pipeline/businessservice.1598013022.SendInArtistProposalSOA-BusinessService" target="SendInArtistProposalSOA-BusinessService" width="2">
         <dgm:gSegment X1="492" Y1="51" X2="666" Y2="51"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
