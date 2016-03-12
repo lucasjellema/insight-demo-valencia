@@ -1,0 +1,22 @@
+<adapter-config name="pollProposalsToBeJudged" adapter="db" wsdlLocation="../WSDLs/pollProposalsToBeJudged.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="insight-demo-schema" location="eis/DB/SOADemo"/>
+  <endpoint-activation portType="pollProposalsToBeJudged_ptt" operation="receive">
+    <activation-spec className="oracle.tip.adapter.db.DBActivationSpec">
+      <property name="DescriptorName" value="pollProposalsToBeJudged.ProposedActs"/>
+      <property name="QueryName" value="pollProposalsToBeJudgedSelect"/>
+      <property name="MappingsMetaDataURL" value="pollProposalsToBeJudged-or-mappings.xml"/>
+      <property name="PollingStrategy" value="LogicalDeletePollingStrategy"/>
+      <property name="MarkReadColumn" value="STATUS"/>
+      <property name="MarkReadValue" value="judging"/>
+      <property name="MarkReservedValue" value="R${weblogic.Name-2}-${IP-2}-judging"/>
+      <property name="MarkUnreadValue" value="toBeJudged"/>
+      <property name="PollingInterval" value="10"/>
+      <property name="MaxRaiseSize" value="1"/>
+      <property name="MaxTransactionSize" value="1"/>
+      <property name="NumberOfThreads" value="1"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+    </activation-spec>
+  </endpoint-activation>
+
+</adapter-config>

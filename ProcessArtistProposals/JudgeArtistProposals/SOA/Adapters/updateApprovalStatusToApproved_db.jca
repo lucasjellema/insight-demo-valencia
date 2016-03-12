@@ -1,0 +1,13 @@
+<adapter-config name="updateApprovalStatusToApproved" adapter="db" wsdlLocation="../WSDLs/updateApprovalStatusToApproved.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="insight-demo-schema" location="eis/DB/SOADemo"/>
+  <endpoint-interaction portType="updateApprovalStatusToApproved_ptt" operation="updateApprovalStatusToApproved">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="TMP_SOAINFRA"/>
+      <property name="PackageName" value="ACT_PROPOSAL_API"/>
+      <property name="ProcedureName" value="UPDATE_ACT_PROPOSAL_STATUS"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

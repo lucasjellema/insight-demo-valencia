@@ -1,0 +1,25 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/ArtistsForEvents/SubmitArtistProposalForEvent/SubmitArtistProposalService" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="SubmitArtistProposalService">RestService</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request" schemaLocation="nxsd_json-artistProposal.xsd"/>
+        </xsd:schema>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_response" schemaLocation="nxsd_json-artistProposal-response.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/ArtistProposal">
+         <method name="POST" soa:wsdlOperation="submitArtistProposal">
+            <doc title="POST submitArtistProposal">Submit a new proposal for an artist for an event</doc>
+            <request>
+               <representation mediaType="application/json" element="cns:proposal" xmlns:cns="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:actProposal-response" xmlns:cns="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_response"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

@@ -1,0 +1,29 @@
+<wsdl:definitions
+     name="updateApprovalStatusToApproved"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/JudgeArtistProposals/updateApprovalStatusToApproved"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/JudgeArtistProposals/updateApprovalStatusToApproved"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/sp/updateApprovalStatusToApproved"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="updateApprovalStatusToApproved_plt" >
+    <plt:role name="updateApprovalStatusToApproved_role" >
+      <plt:portType name="tns:updateApprovalStatusToApproved_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+     <schema xmlns="http://www.w3.org/2001/XMLSchema">
+       <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/sp/updateApprovalStatusToApproved"
+               schemaLocation="../Schemas/updateApprovalStatusToApproved_sp.xsd" />
+     </schema>
+    </wsdl:types>
+    <wsdl:message name="args_in_msg">
+        <wsdl:part name="InputParameters" element="db:InputParameters"/>
+    </wsdl:message>
+    <wsdl:portType name="updateApprovalStatusToApproved_ptt">
+        <wsdl:operation name="updateApprovalStatusToApproved">
+            <wsdl:input message="tns:args_in_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

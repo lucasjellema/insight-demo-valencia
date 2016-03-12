@@ -1,0 +1,39 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="pollProposalsToBeJudged"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/JudgeArtistProposals/pollProposalsToBeJudged"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/JudgeArtistProposals/pollProposalsToBeJudged"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:pc="http://xmlns.oracle.com/pcbpel/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/pollProposalsToBeJudged"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:ns1="http://xmlns.oracle.com/bpel/workflow/task"
+     xmlns:ns2="valencia.insight.artistProposals"
+    >
+    <plt:partnerLinkType name="pollProposalsToBeJudged_plt">
+        <plt:role name="pollProposalsToBeJudged_role">
+            <plt:portType name="tns:pollProposalsToBeJudged_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/pollProposalsToBeJudged"
+                 schemaLocation="../Schemas/pollProposalsToBeJudged_table.xsd"/>
+        </schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.oracle.com/bpel/workflow/task" schemaLocation="../Schemas/JudgeArtistProposalPayload.xsd"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="valencia.insight.artistProposals" schemaLocation="../Schemas/ArtistProposal.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ProposedActsCollection_msg">
+        <wsdl:part name="ProposedActsCollection" element="top:ProposedActsCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="pollProposalsToBeJudged_ptt">
+        <wsdl:operation name="receive">
+            <wsdl:input message="tns:ProposedActsCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

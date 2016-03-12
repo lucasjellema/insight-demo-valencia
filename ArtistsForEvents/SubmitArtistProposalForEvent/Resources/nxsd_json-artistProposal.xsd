@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request" targetNamespace="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="proposal">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="proposedAct">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="artist" type="xsd:string"/>
+                     <xsd:element name="event" type="xsd:string"/>
+                     <xsd:element name="numberOfVotes" type="xsd:integer"/>
+                     <xsd:element name="motivation" type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=/C:/data/Insight-demo-Valencia-march2016/ArtistsForEvents/SubmitArtistProposalForEvent/Resources/submitArtistProposal-request-sample.json</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

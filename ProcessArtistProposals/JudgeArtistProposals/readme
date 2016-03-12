@@ -1,0 +1,10 @@
+
+ pick up from table proposed_acts and proposal with status 'toBeJudged'
+ 
+ create human task for each such proposal; to have it judged by the human actor
+ then update database with:
+ 
+ - reject or approve status + description/motivation
+ and in case of approve:
+ - enriched artist details using REST API
+ 

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/alert/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="SubmitArtistProposalForEvent/Resources/SubmitArtistProposalService"/>
+            <con:binding>
+                <con:name>SubmitArtistProposalService_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/ArtistsForEvents/SubmitArtistProposalForEvent/SubmitArtistProposalService</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:flow>
+            <con:route-node name="RouteNode1" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                <con:context>
+                    <con2:userNsDecl prefix="sub" namespace="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request"/>
+                </con:context>
+                <con:actions>
+                    <con1:route>
+                        <con2:id>_ActionId-N3f57c7ff.1eac3763.0.1535a3c4ed5.N7ff9</con2:id>
+                        <con1:service ref="SubmitArtistProposalForEvent/initializeArtistProposal" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con1:operation>initializeArtistProposal</con1:operation>
+                        <con1:outboundTransform>
+                            <con3:alert xmlns:con3="http://www.bea.com/wli/sb/stages/alert/config">
+                                <con2:id>_ActionId-N3f57c7ff.1eac3763.0.1535a3c4ed5.N7fe6</con2:id>
+                                <con3:destination ref="SubmitArtistProposalForEvent/AlertDestination"/>
+                                <con3:description>Artist of body before replacement</con3:description>
+                                <con3:severity>normal</con3:severity>
+                                <con3:payload>
+                                    <con2:xqueryText>fn:concat('Artist: ', $body/sub:proposal/sub:proposedAct/sub:artist)</con2:xqueryText>
+                                </con3:payload>
+                            </con3:alert>
+                            <con3:alert xmlns:con3="http://www.bea.com/wli/sb/stages/alert/config">
+                                <con2:id>_ActionId-N3f57c7ff.1eac3763.0.1535a3c4ed5.N7fdf</con2:id>
+                                <con3:destination ref="SubmitArtistProposalForEvent/AlertDestination"/>
+                                <con3:description>Content of body after replacement</con3:description>
+                                <con3:severity>normal</con3:severity>
+                                <con3:payload>
+                                    <con2:xqueryText>fn:concat('Event ', $body/sub:proposal/*[1]/sub:event,':', $body/*[0]/*[0]/sub:event, ';',$body/sub:proposal/sub:proposedAct/sub:event)</con2:xqueryText>
+                                </con3:payload>
+                            </con3:alert>
+                            <con3:replace varName="body" contents-only="true" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con2:id>_ActionId-N3f57c7ff.1eac3763.0.1535a3c4ed5.N7ff6</con2:id>
+                                <con3:expr>
+                                    <con2:xsltTransform>
+                                        <con2:resource ref="SubmitArtistProposalForEvent/newArtistProposal-to-initializeProposalInDB"/>
+                                        <con2:input>$body/sub:proposal</con2:input>
+                                    </con2:xsltTransform>
+                                </con3:expr>
+                            </con3:replace>
+                            <con3:alert xmlns:con3="http://www.bea.com/wli/sb/stages/alert/config">
+                                <con2:id>_ActionId-N3f57c7ff.1eac3763.0.1535a3c4ed5.N7fe9</con2:id>
+                                <con3:destination ref="SubmitArtistProposalForEvent/AlertDestination"/>
+                                <con3:description>Content of body after replacement</con3:description>
+                                <con3:severity>normal</con3:severity>
+                                <con3:payload>
+                                    <con2:xqueryText>$body/*[0]/*[0]</con2:xqueryText>
+                                </con3:payload>
+                            </con3:alert>
+                        </con1:outboundTransform>
+                        <con1:responseTransform>
+                            <con3:replace varName="body" contents-only="true" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con2:id>_ActionId-N3f57c7ff.1eac3763.0.1535a3c4ed5.N7ff3</con2:id>
+                                <con3:expr>
+                                    <con2:xsltTransform>
+                                        <con2:resource ref="SubmitArtistProposalForEvent/InitializeProposalInDB-to-newArtistProposalResponse"/>
+                                        <con2:input>$body/*[1]</con2:input>
+                                    </con2:xsltTransform>
+                                </con3:expr>
+                            </con3:replace>
+                        </con1:responseTransform>
+                    </con1:route>
+                </con:actions>
+            </con:route-node>
+        </con:flow>
+        <con:partner-links>
+            <con:partner-link>
+                <con:service ref="SubmitArtistProposalForEvent/insert-new-proposal-record" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+            </con:partner-link>
+        </con:partner-links>
+    </con:router>
+</con:pipelineEntry>

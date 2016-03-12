@@ -1,0 +1,13 @@
+<adapter-config name="updateArtistProposal" adapter="db" wsdlLocation="../WSDLs/updateArtistProposal.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="insight-demo-schema" location="eis/DB/SOADemo"/>
+  <endpoint-interaction portType="updateArtistProposal_ptt" operation="updateArtistProposal">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="TMP_SOAINFRA"/>
+      <property name="PackageName" value="ACT_PROPOSAL_API"/>
+      <property name="ProcedureName" value="SUBMIT_ACT_PROPOSAL"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

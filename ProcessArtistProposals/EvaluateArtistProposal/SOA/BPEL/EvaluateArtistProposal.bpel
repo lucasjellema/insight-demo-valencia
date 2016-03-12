@@ -1,0 +1,287 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Mar 09 13:56:15 CET 2016
+  Author:  lucas_j
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="EvaluateArtistProposal"
+               targetNamespace="valencia.insight.artistmanagement"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="valencia.insight.artistmanagement"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/processNewArtistProposals"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/verifyExistinceOfProposal"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/db/sp/verifyExistinceOfProposal"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/top/processNewArtistProposals"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns5="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/updateArtistProposal"
+         xmlns:ns6="http://xmlns.oracle.com/pcbpel/adapter/db/sp/updateArtistProposal"
+         xmlns:ns7="http://xmlns.oracle.com/ArtistProposalRules/ArtistProposalRules_DecisionService_1"
+         xmlns:ns8="http://xmlns.oracle.com/bpel" xmlns:ns9="valencia.insight.artistProposals"
+         xmlns:ns10="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/updateProposalStatus"
+         xmlns:ns11="http://xmlns.oracle.com/pcbpel/adapter/db/sp/updateProposalStatus"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/processNewArtistProposals"
+          location="../WSDLs/processNewArtistProposals.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"
+          ui:processWSDL="true"/>
+  <partnerLinks>
+    <partnerLink name="processNewArtistProposals" partnerLinkType="ns1:processNewArtistProposals_plt"
+                 myRole="processNewArtistProposals_role"/>
+    <partnerLink name="verifyExistinceOfProposal" partnerLinkType="ns2:verifyExistinceOfProposal_plt"
+                 partnerRole="verifyExistinceOfProposal_role"/>
+    <partnerLink name="updateArtistProposal" partnerLinkType="ns5:updateArtistProposal_plt"
+                 partnerRole="updateArtistProposal_role"/>
+    <partnerLink name="ArtistProposalRules.ArtistProposalRules_DecisionService_1" partnerRole="IDecisionService_Role"
+                 partnerLinkType="ns7:IDecisionService_PLT"/>
+    <partnerLink name="updateProposalStatus" partnerLinkType="ns10:updateProposalStatus_plt"
+                 partnerRole="updateProposalStatus_role"/>
+  </partnerLinks>
+  <variables>
+    <variable name="newArtistProposal" messageType="ns1:ProposedActsCollection_msg"/>
+    <variable name="proposalId" type="xsd:int"/>
+    <variable name="SetProposalApproved_updateProposalStatus_InputVariable" messageType="ns10:args_in_msg"/>
+  </variables>
+  <sequence name="main">
+    <receive name="readInboundArtistProposalRecord" partnerLink="processNewArtistProposals"
+             portType="ns1:processNewArtistProposals_ptt" operation="receive" variable="newArtistProposal"
+             createInstance="yes"/>
+    <scope name="VerifyExistenceOfProposal">
+      <variables>
+        <variable name="Invoke-verifyExistence_verifyExistinceOfProposal_InputVariable" messageType="ns2:args_in_msg"/>
+        <variable name="Invoke-verifyExistence_verifyExistinceOfProposal_OutputVariable"
+                  messageType="ns2:args_out_msg"/>
+        <variable name="UpdateExistingProposal_updateArtistProposal_InputVariable" messageType="ns5:args_in_msg"/>
+        <variable name="UpdateExistingProposal_updateArtistProposal_OutputVariable" messageType="ns5:args_out_msg"/>
+        <variable name="SetProposalAsDuplicate_updateProposalStatus_InputVariable" messageType="ns10:args_in_msg"/>
+      </variables>
+      <sequence name="Sequence1">
+        <assign name="AssignInput">
+          <copy>
+            <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:name</from>
+            <to>$Invoke-verifyExistence_verifyExistinceOfProposal_InputVariable.InputParameters/ns4:P_ACT_NAME</to>
+          </copy>
+          <copy>
+            <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:event</from>
+            <to>$Invoke-verifyExistence_verifyExistinceOfProposal_InputVariable.InputParameters/ns4:P_EVENT</to>
+          </copy>
+        </assign>
+        <invoke name="Invoke-verifyExistence" bpelx:invokeAsDetail="no" partnerLink="verifyExistinceOfProposal"
+                portType="ns2:verifyExistinceOfProposal_ptt" operation="verifyExistinceOfProposal"
+                inputVariable="Invoke-verifyExistence_verifyExistinceOfProposal_InputVariable"
+                outputVariable="Invoke-verifyExistence_verifyExistinceOfProposal_OutputVariable"/>
+        <if name="IfProposalExists">
+          <documentation>
+            <![CDATA[exists]]>
+          </documentation>
+          <condition>$Invoke-verifyExistence_verifyExistinceOfProposal_OutputVariable.OutputParameters/ns4:P_ACT_PROPOSED_YN='Y'</condition>
+          <sequence name="Sequence2">
+            <assign name="Assign1">
+              <copy>
+                <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:numberOfVotes</from>
+                <to>$UpdateExistingProposal_updateArtistProposal_InputVariable.InputParameters/ns6:P_NUMBER_OF_VOTES</to>
+              </copy>
+              <copy>
+                <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:event</from>
+                <to>$UpdateExistingProposal_updateArtistProposal_InputVariable.InputParameters/ns6:P_EVENT</to>
+              </copy>
+              <copy>
+                <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:name</from>
+                <to>$UpdateExistingProposal_updateArtistProposal_InputVariable.InputParameters/ns6:P_ARTIST/ns6:NAME</to>
+              </copy>
+            </assign>
+            <invoke name="UpdatePreExistingProposal" bpelx:invokeAsDetail="no" partnerLink="updateArtistProposal"
+                    portType="ns5:updateArtistProposal_ptt" operation="updateArtistProposal"
+                    inputVariable="UpdateExistingProposal_updateArtistProposal_InputVariable"
+                    outputVariable="UpdateExistingProposal_updateArtistProposal_OutputVariable"/>
+            <assign name="AssignDuplicate">
+              <copy>
+                <from>'duplicate'</from>
+                <to>$SetProposalAsDuplicate_updateProposalStatus_InputVariable.InputParameters/ns11:P_NEW_STATUS</to>
+              </copy>
+              <copy>
+                <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:id</from>
+                <to>$SetProposalAsDuplicate_updateProposalStatus_InputVariable.InputParameters/ns11:P_ID</to>
+              </copy>
+              <copy>
+                <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:name</from>
+                <to>$SetProposalAsDuplicate_updateProposalStatus_InputVariable.InputParameters/ns11:P_ARTIST</to>
+              </copy>
+              <copy>
+                <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:event</from>
+                <to>$SetProposalAsDuplicate_updateProposalStatus_InputVariable.InputParameters/ns11:P_EVENT</to>
+              </copy>
+            </assign>
+            <invoke name="SetProposalAsDuplicate" bpelx:invokeAsDetail="no" partnerLink="updateProposalStatus"
+                    portType="ns10:updateProposalStatus_ptt" operation="updateProposalStatus"
+                    inputVariable="SetProposalAsDuplicate_updateProposalStatus_InputVariable"/>
+          </sequence>
+          <else>
+            <documentation>
+              <![CDATA[not exists]]>
+            </documentation>
+            <sequence>
+              <scope name="ValidateMinimumRequirements">
+                <variables>
+                  <variable name="BR-input" messageType="ns7:callFunctionStatelessMessage"/>
+                  <variable name="BR-Output" messageType="ns7:callFunctionStatelessDecisionMessage"/>
+                  <variable name="UpdateProposalStatus_updateProposalStatus_InputVariable"
+                            messageType="ns10:args_in_msg"/>
+                </variables>
+                <sequence name="Sequence4">
+                  <assign name="AssignInput">
+                    <copy>
+                      <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:event</from>
+                      <to>$BR-input.payload/ns7:parameterList/ns9:ArtistProposal/ns9:event</to>
+                    </copy>
+                    <copy>
+                      <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:numberOfVotes</from>
+                      <to>$BR-input.payload/ns7:parameterList/ns9:ArtistProposal/ns9:numberOfVotes</to>
+                    </copy>
+                    <copy>
+                      <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:description</from>
+                      <to>$BR-input.payload/ns7:parameterList/ns9:ArtistProposal/ns9:description</to>
+                    </copy>
+                    <copy>
+                      <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:name</from>
+                      <to>$BR-input.payload/ns7:parameterList/ns9:ArtistProposal/ns9:name</to>
+                    </copy>
+                    <copy>
+                      <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:proposalTimestamp</from>
+                      <to>$BR-input.payload/ns7:parameterList/ns9:ArtistProposal/ns9:submissionTimestape</to>
+                    </copy>
+                    <copy>
+                      <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:sourceOfProposal</from>
+                      <to>$BR-input.payload/ns7:parameterList/ns9:ArtistProposal/ns9:source</to>
+                    </copy>
+                  </assign>
+                  <scope name="CheckProposalAgainstMinReq">
+                    <bpelx:annotation>
+                      <bpelx:pattern patternName="bpelx:decide"></bpelx:pattern>
+                    </bpelx:annotation>
+                    <variables>
+                      <variable name="dsIn" messageType="ns7:callFunctionStatelessMessage"/>
+                      <variable name="dsOut" messageType="ns7:callFunctionStatelessDecisionMessage"/>
+                    </variables>
+                    <sequence name="Sequence5">
+                      <assign name="Facts_To_Rule_Service">
+                        <copy>
+                          <from variable="BR-input"/>
+                          <to variable="dsIn"/>
+                        </copy>
+                      </assign>
+                      <assign name="BPEL_Header">
+                        <copy>
+                          <from>"ArtistProposalRules_DecisionService_1"</from>
+                          <to variable="dsIn" part="payload"><query>@name</query></to>
+                        </copy>
+                      </assign>
+                      <invoke name="Invoke" partnerLink="ArtistProposalRules.ArtistProposalRules_DecisionService_1"
+                              portType="ns7:IDecisionService" operation="callFunctionStateless" inputVariable="dsIn"
+                              outputVariable="dsOut"/>
+                      <assign name="Rule_Service_To_Facts">
+                        <copy>
+                          <from variable="dsOut"/>
+                          <to variable="BR-Output"/>
+                        </copy>
+                      </assign>
+                    </sequence>
+                  </scope>
+                  <if name="IfRejected">
+                    <documentation>
+                      <![CDATA[rejectedByBusRul]]>
+                    </documentation>
+                    <condition>$BR-Output.payload/ns7:resultList/ns9:ArtistProposalRuleEvaluation/ns9:evaluationOutcome='false'</condition>
+                    <sequence name="Sequence6">
+                      <empty name="UpdateDBStatusForApproval"/>
+                      <assign name="AssignInvalid">
+                        <copy>
+                          <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:id</from>
+                          <to>$UpdateProposalStatus_updateProposalStatus_InputVariable.InputParameters/ns11:P_ID</to>
+                        </copy>
+                        <copy>
+                          <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:name</from>
+                          <to>$UpdateProposalStatus_updateProposalStatus_InputVariable.InputParameters/ns11:P_ARTIST</to>
+                        </copy>
+                        <copy>
+                          <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:event</from>
+                          <to>$UpdateProposalStatus_updateProposalStatus_InputVariable.InputParameters/ns11:P_EVENT</to>
+                        </copy>
+                        <copy>
+                          <from>'invalid'</from>
+                          <to>$UpdateProposalStatus_updateProposalStatus_InputVariable.InputParameters/ns11:P_NEW_STATUS</to>
+                        </copy>
+                      </assign>
+                      <invoke name="UpdateProposalStatus" bpelx:invokeAsDetail="no" partnerLink="updateProposalStatus"
+                              portType="ns10:updateProposalStatus_ptt" operation="updateProposalStatus"
+                              inputVariable="UpdateProposalStatus_updateProposalStatus_InputVariable"/>
+                    </sequence>
+                    <else>
+                      <documentation>
+                        <![CDATA[AcceptedByBR]]>
+                      </documentation>
+                      <scope name="ApproveOrRejectProposal">
+                        <variables>
+                          <variable name="SetProposalApproved_updateProposalStatus_InputVariable_1"
+                                    messageType="ns10:args_in_msg"/>
+                        </variables>
+                        <sequence name="Sequence7"><assign name="SetStatusToBeApproved"
+                                       xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                            <copy>
+                              <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:id</from>
+                              <to>$SetProposalApproved_updateProposalStatus_InputVariable_1.InputParameters/ns11:P_ID</to>
+                            </copy>
+                            <copy>
+                              <from>'toBeJudged'</from>
+                              <to>$SetProposalApproved_updateProposalStatus_InputVariable_1.InputParameters/ns11:P_NEW_STATUS</to>
+                            </copy>
+                            <copy>
+                              <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:name</from>
+                              <to>$SetProposalApproved_updateProposalStatus_InputVariable_1.InputParameters/ns11:P_ARTIST</to>
+                            </copy>
+                            <copy>
+                              <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:event</from>
+                              <to>$SetProposalApproved_updateProposalStatus_InputVariable_1.InputParameters/ns11:P_EVENT</to>
+                            </copy>
+                          </assign><invoke name="SetProposalApproved" bpelx:invokeAsDetail="no"
+                                  partnerLink="updateProposalStatus" portType="ns10:updateProposalStatus_ptt"
+                                  operation="updateProposalStatus"
+                                  inputVariable="SetProposalApproved_updateProposalStatus_InputVariable_1"/>
+                        </sequence>
+                      </scope>
+                    </else>
+                  </if>
+                </sequence>
+              </scope>
+            </sequence>
+          </else>
+        </if>
+      </sequence>
+    </scope>
+  </sequence>
+</process>

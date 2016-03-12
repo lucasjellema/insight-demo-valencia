@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:viap="valencia.insight.artistProposals"
+            targetNamespace="valencia.insight.artistProposals" elementFormDefault="qualified">
+  <xsd:element name="ArtistProposal" type="viap:artistProposalType"/>
+  <xsd:element name="ArtistProposalRuleEvaluation" type="viap:artistProposalRuleEvaluationType"/>
+
+  <xsd:complexType name="artistProposalRuleEvaluationType">
+    <xsd:sequence>
+      <xsd:element name="evaluationOutcome" type="xsd:boolean"/>
+      <xsd:element name="evaluationComment" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="artistProposalType">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="numberOfVotes" type="xsd:integer"/>
+      <xsd:element name="description" type="xsd:string"/>
+      <xsd:element name="event" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="source" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="submissionTimestape" type="xsd:dateTime" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns="valencia.insight.demo" targetNamespace="valencia.insight.demo" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="proposal">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="proposedAct">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="artist" type="xsd:string"/>
+                     <xsd:element name="event" type="xsd:string"/>
+                     <xsd:element name="numberOfVotes" type="xsd:integer"/>
+                     <xsd:element name="motivation" type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+
+   <xsd:element name="proposalResponse">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="proposedActIdentifier" type="xsd:integer"/>
+                     <xsd:element name="artist" type="xsd:string"/>
+                     <xsd:element name="event" type="xsd:string"/>
+                     <xsd:element name="numberOfVotes" type="xsd:integer"/>
+                     <xsd:element name="motivation" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+</xsd:schema>

@@ -1,0 +1,203 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>86</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>90</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>106</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>110</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>114</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>128</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>132</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>136</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>159</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>163</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>167</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>171</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>175</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>179</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>224</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>228</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>232</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>256</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>264</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>268</line>
+      <col/>
+      <file>BPEL/EvaluateArtistProposal.bpel</file>
+      <name>BPEL/EvaluateArtistProposal.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns3:ProposedActs" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+</Faults>

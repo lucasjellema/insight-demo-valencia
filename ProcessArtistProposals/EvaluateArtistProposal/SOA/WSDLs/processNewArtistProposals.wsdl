@@ -1,0 +1,32 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="processNewArtistProposals"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/processNewArtistProposals"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/processNewArtistProposals"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:pc="http://xmlns.oracle.com/pcbpel/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/processNewArtistProposals"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     
+    >
+    <plt:partnerLinkType name="processNewArtistProposals_plt">
+        <plt:role name="processNewArtistProposals_role">
+            <plt:portType name="tns:processNewArtistProposals_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/processNewArtistProposals"
+                 schemaLocation="../Schemas/processNewArtistProposals_table.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="ProposedActsCollection_msg">
+        <wsdl:part name="ProposedActsCollection" element="top:ProposedActsCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="processNewArtistProposals_ptt">
+        <wsdl:operation name="receive">
+            <wsdl:input message="tns:ProposedActsCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

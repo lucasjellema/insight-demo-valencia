@@ -1,0 +1,21 @@
+<adapter-config name="processNewArtistProposals" adapter="db" wsdlLocation="../WSDLs/processNewArtistProposals.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="insight-demo-schema" location="eis/DB/SOADemo"/>
+  <endpoint-activation portType="processNewArtistProposals_ptt" operation="receive">
+    <activation-spec className="oracle.tip.adapter.db.DBActivationSpec">
+      <property name="DescriptorName" value="processNewArtistProposals.ProposedActs"/>
+      <property name="QueryName" value="processNewArtistProposalsSelect"/>
+      <property name="MappingsMetaDataURL" value="processNewArtistProposals-or-mappings.xml"/>
+      <property name="PollingStrategy" value="LogicalDeletePollingStrategy"/>
+      <property name="MarkReadColumn" value="STATUS"/>
+      <property name="MarkReadValue" value="evaluating"/>
+      <property name="MarkUnreadValue" value="new"/>
+      <property name="PollingInterval" value="20"/>
+      <property name="MaxRaiseSize" value="1"/>
+      <property name="MaxTransactionSize" value="1"/>
+      <property name="NumberOfThreads" value="1"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+    </activation-spec>
+  </endpoint-activation>
+
+</adapter-config>

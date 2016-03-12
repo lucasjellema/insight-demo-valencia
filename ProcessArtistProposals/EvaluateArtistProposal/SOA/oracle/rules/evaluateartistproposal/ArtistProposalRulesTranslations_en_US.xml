@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<properties>
+   <entry key="DG}-73586f15:1535a3b95b2:-7be3">Number of votes is smaller than minimum</entry>
+   <entry key="AG}-73586f15:1535a3b95b2:-7be4">minimumNumberOfVotes</entry>
+   <entry key="AG}-73586f15:1535a3b95b2:-7be5">NumberOfVotes</entry>
+   <entry key="AG}-73586f15:1535a3b95b2:-7be6">ArtistProposalEvaluationOutcome</entry>
+   <entry key="DG}-73586f15:1535a3b95b2:-7be5">Number of votes at least equal to minimum</entry>
+</properties>

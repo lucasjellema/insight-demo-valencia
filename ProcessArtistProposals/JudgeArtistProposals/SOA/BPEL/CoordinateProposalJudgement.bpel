@@ -1,0 +1,220 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Mar 09 16:53:42 CET 2016
+  Author:  lucas_j
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="CoordinateProposalJudgement"
+               targetNamespace="http://xmlns.oracle.com/ProcessArtistProposals/JudgeArtistProposals/CoordinateProposalJudgement"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/ProcessArtistProposals/JudgeArtistProposals/CoordinateProposalJudgement"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/JudgeArtistProposals/pollProposalsToBeJudged"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:task="http://xmlns.oracle.com/bpel/workflow/task"
+         xmlns:taskservice="http://xmlns.oracle.com/bpel/workflow/taskService"
+         xmlns:wfcommon="http://xmlns.oracle.com/bpel/workflow/common"
+         xmlns:wf="http://schemas.oracle.com/bpel/extensions/workflow" xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/db/top/pollProposalsToBeJudged"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns2="http://xmlns.oracle.com/bpel/workflow/TaskEvidenceService"
+         xmlns:ns3="valencia.insight.artistProposals" xmlns:ns5="http://xmlns.oracle.com/bpel/workflow/routingSlip"
+         xmlns:ns6="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/JudgeArtistProposals/updateRejectedStatus"
+         xmlns:ns7="http://xmlns.oracle.com/pcbpel/adapter/db/sp/updateRejectedStatus"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns8="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/JudgeArtistProposals/updateApprovalStatusToApproved"
+         xmlns:ns9="http://xmlns.oracle.com/pcbpel/adapter/db/sp/updateApprovalStatusToApproved">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="valencia.insight.artistProposals" location="../Schemas/ArtistProposal.xsd"
+          importType="http://www.w3.org/2001/XMLSchema"/>
+  <import namespace="http://xmlns.oracle.com/bpel/workflow/task" location="../Schemas/JudgeArtistProposalPayload.xsd"
+          importType="http://www.w3.org/2001/XMLSchema"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/JudgeArtistProposals/pollProposalsToBeJudged"
+          location="../WSDLs/pollProposalsToBeJudged.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"
+          ui:processWSDL="true"/>
+  <partnerLinks>
+    <partnerLink name="pollProposalsToBeJudged" partnerLinkType="ns1:pollProposalsToBeJudged_plt"
+                 myRole="pollProposalsToBeJudged_role"/>
+    <partnerLink name="JudgeArtistProposal.TaskService_1" partnerLinkType="taskservice:TaskService"
+                 partnerRole="TaskService" myRole="TaskServiceCallbackListener"/>
+    <partnerLink name="updateRejectedStatus" partnerLinkType="ns6:updateRejectedStatus_plt"
+                 partnerRole="updateRejectedStatus_role"/>
+    <partnerLink name="updateApprovalStatusToApproved" partnerLinkType="ns8:updateApprovalStatusToApproved_plt"
+                 partnerRole="updateApprovalStatusToApproved_role"/>
+  </partnerLinks>
+  <variables>
+    <variable name="ReceiveProposalToBeJudged_receive_InputVariable" messageType="ns1:ProposedActsCollection_msg"/>
+    <variable name="JudgeArtistProposal1_globalVariable" messageType="taskservice:taskMessage"/>
+    <variable name="ProposalToBeJudgedInTask" type="task:JudgeArtistProposalPayloadType"/>
+    <variable name="ArtistProposalToJudge" element="ns3:ArtistProposal"/>
+    <variable name="SetProposalRejected_updateRejectedStatus_InputVariable" messageType="ns6:args_in_msg"/>
+    <variable name="SetProposalApproved_updateApprovalStatusToApproved_InputVariable" messageType="ns8:args_in_msg"/>
+  </variables>
+  <sequence name="main">
+    <receive name="ReceiveProposalToBeJudged" partnerLink="pollProposalsToBeJudged"
+             portType="ns1:pollProposalsToBeJudged_ptt" operation="receive"
+             variable="ReceiveProposalToBeJudged_receive_InputVariable" createInstance="yes"/>
+    <assign name="PrepareTaskPayload">
+      <copy>
+        <from>$ReceiveProposalToBeJudged_receive_InputVariable.ProposedActsCollection/ns4:ProposedActs/ns4:event</from>
+        <to>$ArtistProposalToJudge/ns3:eventForPerformance</to>
+      </copy>
+      <copy>
+        <from>$ReceiveProposalToBeJudged_receive_InputVariable.ProposedActsCollection/ns4:ProposedActs/ns4:proposalTimestamp</from>
+        <to>$ArtistProposalToJudge/ns3:submissionTimestamp</to>
+      </copy>
+      <copy>
+        <from>$ReceiveProposalToBeJudged_receive_InputVariable.ProposedActsCollection/ns4:ProposedActs/ns4:sourceOfProposal</from>
+        <to>$ArtistProposalToJudge/ns3:sourceForProposal</to>
+      </copy>
+      <copy>
+        <from>$ReceiveProposalToBeJudged_receive_InputVariable.ProposedActsCollection/ns4:ProposedActs/ns4:name</from>
+        <to>$ArtistProposalToJudge/ns3:name</to>
+      </copy>
+      <copy>
+        <from>$ReceiveProposalToBeJudged_receive_InputVariable.ProposedActsCollection/ns4:ProposedActs/ns4:numberOfVotes</from>
+        <to>$ArtistProposalToJudge/ns3:numberOfVotes</to>
+      </copy>
+      <copy>
+        <from>$ReceiveProposalToBeJudged_receive_InputVariable.ProposedActsCollection/ns4:ProposedActs/ns4:description</from>
+        <to>$ArtistProposalToJudge/ns3:description</to>
+      </copy>
+    </assign>
+    <scope name="JudgeArtistProposal1" xmlns:wf="http://schemas.oracle.com/bpel/extensions/workflow"
+           wf:key="JudgeArtistProposal1_globalVariable">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:workflow"></bpelx:pattern>
+      </bpelx:annotation>
+      <variables>
+        <variable name="initiateTaskInput" messageType="taskservice:initiateTaskMessage"/>
+        <variable name="initiateTaskResponseMessage" messageType="taskservice:initiateTaskResponseMessage"/>
+      </variables>
+      <sequence>
+        <assign name="JudgeArtistProposal1_AssignTaskAttributes">
+          <copy>
+            <from>number(3)</from>
+            <to>$initiateTaskInput.payload/task:task/task:priority</to>
+          </copy>
+          <copy>
+            <from><literal><payload xmlns="http://xmlns.oracle.com/bpel/workflow/task">
+	<ArtistProposal xmlns="valencia.insight.artistProposals"/> 
+</payload></literal></from>
+            <to>$initiateTaskInput.payload/task:task/task:payload</to>
+          </copy>
+          <copy>
+            <from>$ArtistProposalToJudge</from>
+            <to>$initiateTaskInput.payload/task:task/task:payload/ns3:ArtistProposal</to>
+          </copy>
+        </assign>
+        <invoke name="initiateTask_JudgeArtistProposal1" partnerLink="JudgeArtistProposal.TaskService_1"
+                operation="initiateTask" portType="taskservice:TaskService" inputVariable="initiateTaskInput"
+                outputVariable="initiateTaskResponseMessage"/>
+        <receive name="receiveCompletedTask_JudgeArtistProposal1" partnerLink="JudgeArtistProposal.TaskService_1"
+                 portType="taskservice:TaskServiceCallback" operation="onTaskCompleted"
+                 variable="JudgeArtistProposal1_globalVariable" createInstance="no"/>
+      </sequence>
+    </scope>
+    <if name="taskIf">
+      <documentation>
+        <![CDATA[Task outcome is APPROVE]]>
+      </documentation>
+      <condition>$JudgeArtistProposal1_globalVariable.payload/task:systemAttributes/task:outcome = 'APPROVE'</condition>
+      <sequence>
+        <assign name="copyPayload">
+          <copy>
+            <from>$JudgeArtistProposal1_globalVariable.payload/task:payload</from>
+            <to>$ArtistProposalToJudge</to>
+          </copy>
+        </assign>
+        <assign name="AssignApprovedStatus">
+          <copy>
+            <from>$ReceiveProposalToBeJudged_receive_InputVariable.ProposedActsCollection/ns4:ProposedActs/ns4:id</from>
+            <to>$SetProposalApproved_updateApprovalStatusToApproved_InputVariable.InputParameters/ns9:P_ID</to>
+          </copy>
+          <copy>
+            <from>$ReceiveProposalToBeJudged_receive_InputVariable.ProposedActsCollection/ns4:ProposedActs/ns4:name</from>
+            <to>$SetProposalApproved_updateApprovalStatusToApproved_InputVariable.InputParameters/ns9:P_ARTIST</to>
+          </copy>
+          <copy>
+            <from>$ReceiveProposalToBeJudged_receive_InputVariable.ProposedActsCollection/ns4:ProposedActs/ns4:event</from>
+            <to>$SetProposalApproved_updateApprovalStatusToApproved_InputVariable.InputParameters/ns9:P_EVENT</to>
+          </copy>
+          <copy>
+            <from>'approved'</from>
+            <to>$SetProposalApproved_updateApprovalStatusToApproved_InputVariable.InputParameters/ns9:P_NEW_STATUS</to>
+          </copy>
+        </assign>
+        <invoke name="SetProposalApproved" bpelx:invokeAsDetail="no" partnerLink="updateApprovalStatusToApproved"
+                portType="ns8:updateApprovalStatusToApproved_ptt" operation="updateApprovalStatusToApproved"
+                inputVariable="SetProposalApproved_updateApprovalStatusToApproved_InputVariable"/>
+      </sequence>
+      <elseif>
+        <documentation>
+          <![CDATA[Task outcome is REJECT]]>
+        </documentation>
+        <condition>$JudgeArtistProposal1_globalVariable.payload/task:systemAttributes/task:outcome = 'REJECT'</condition>
+        <sequence>
+          <assign name="copyPayload">
+            <copy>
+              <from>$JudgeArtistProposal1_globalVariable.payload/task:payload</from>
+              <to>$ArtistProposalToJudge</to>
+            </copy>
+          </assign>
+          <assign name="AssignRejectStatus">
+            <copy>
+              <from>$ReceiveProposalToBeJudged_receive_InputVariable.ProposedActsCollection/ns4:ProposedActs/ns4:id</from>
+              <to>$SetProposalRejected_updateRejectedStatus_InputVariable.InputParameters/ns7:P_ID</to>
+            </copy>
+            <copy>
+              <from>$ReceiveProposalToBeJudged_receive_InputVariable.ProposedActsCollection/ns4:ProposedActs/ns4:name</from>
+              <to>$SetProposalRejected_updateRejectedStatus_InputVariable.InputParameters/ns7:P_ARTIST</to>
+            </copy>
+            <copy>
+              <from>$ReceiveProposalToBeJudged_receive_InputVariable.ProposedActsCollection/ns4:ProposedActs/ns4:event</from>
+              <to>$SetProposalRejected_updateRejectedStatus_InputVariable.InputParameters/ns7:P_EVENT</to>
+            </copy>
+            <copy>
+              <from>'rejected'</from>
+              <to>$SetProposalRejected_updateRejectedStatus_InputVariable.InputParameters/ns7:P_NEW_STATUS</to>
+            </copy>
+          </assign>
+          <invoke name="SetProposalRejected" bpelx:invokeAsDetail="no" partnerLink="updateRejectedStatus"
+                  portType="ns6:updateRejectedStatus_ptt" operation="updateRejectedStatus"
+                  inputVariable="SetProposalRejected_updateRejectedStatus_InputVariable"/>
+        </sequence>
+      </elseif>
+      <else>
+        <sequence>
+          <assign name="copyPayload">
+            <copy>
+              <from>$JudgeArtistProposal1_globalVariable.payload/task:payload</from>
+              <to>$ArtistProposalToJudge</to>
+            </copy>
+          </assign>
+        </sequence>
+      </else>
+    </if>
+  </sequence>
+</process>

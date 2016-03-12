@@ -1,0 +1,13 @@
+<adapter-config name="updateRejectedStatus" adapter="db" wsdlLocation="../WSDLs/updateRejectedStatus.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="insight-demo-schema" location="eis/DB/SOADemo"/>
+  <endpoint-interaction portType="updateRejectedStatus_ptt" operation="updateRejectedStatus">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="TMP_SOAINFRA"/>
+      <property name="PackageName" value="ACT_PROPOSAL_API"/>
+      <property name="ProcedureName" value="UPDATE_ACT_PROPOSAL_STATUS"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

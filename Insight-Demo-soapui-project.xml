@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="Insight-Demo" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="processOrderBinding" type="wsdl" bindingName="{http://www.oracle.com/ProcessOrder}processOrderBinding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep?WSDL"><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.oracle.com/ProcessOrder" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.oracle.com/ProcessOrder" xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder!1.0/WSDLs/ProcessOrderWrapper.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="receiveOrder">
+    <plnk:role name="processOrderPortType" portType="tns:processOrderPortType"/>
+  </plnk:partnerLinkType>
+  <wsdl:import namespace="http://www.oracle.com/ProcessOrder" location="http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep?WSDL=ProcessOrder.wsdl"/>
+  <wsdl:binding name="processOrderBinding" type="tns:processOrderPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="process">
+      <soap:operation style="document" soapAction="process"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="receiveorder_client_ep">
+    <wsdl:port name="processOrderPort" binding="tns:processOrderBinding">
+      <soap:address location="http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep?WSDL=ProcessOrder.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.oracle.com/ProcessOrder" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.oracle.com/ProcessOrder" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:types="http://www.oracle.com/soasample">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep?XSD=../Schemas/CanonicalOrder.xsd" namespace="http://www.oracle.com/soasample"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="orderInput">
+    <wsdl:part name="order" element="types:Order"/>
+  </wsdl:message>
+  <wsdl:message name="orderOutput">
+    <wsdl:part name="ack" element="types:OrderAck"/>
+  </wsdl:message>
+  <wsdl:portType name="processOrderPortType">
+    <wsdl:operation name="process">
+      <wsdl:input message="tns:orderInput"/>
+      <wsdl:output message="tns:orderOutput"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep?XSD=../Schemas/CanonicalOrder.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://www.oracle.com/soasample" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.oracle.com/soasample">
+  <xs:element name="Order" type="OrderType">
+    <xs:annotation>
+      <xs:documentation>The canonical order element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="OrderAck" type="OrderAckType">
+    <xs:annotation>
+      <xs:documentation>The canonical order ack element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="PaymentInfo" type="PaymentType">
+    <xs:annotation>
+      <xs:documentation>The canonical order element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="PaymentStatus" type="PaymentStatusType">
+    <xs:annotation>
+      <xs:documentation>The canonical order element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="Shipping" type="ShippingType">
+    <xs:annotation>
+      <xs:documentation>The canonical order element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="InventoryQuery" type="InventoryQueryType">
+    <xs:annotation>
+      <xs:documentation>The inventory element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="InventoryResponse" type="InventoryType">
+    <xs:annotation>
+      <xs:documentation>The inventory element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="TotalOrderAmount" type="MoneyType">
+    <xs:annotation>
+      <xs:documentation>The total order amount element</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:simpleType name="MoneyType">
+    <xs:restriction base="xs:double"/>
+  </xs:simpleType>
+  <xs:simpleType name="OrderNumberType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="25"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NameType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AddressType">
+    <xs:sequence>
+      <xs:element name="FirstName" type="NameType"/>
+      <xs:element name="LastName" type="NameType" minOccurs="1"/>
+      <xs:element name="Age" type="xs:integer"/>
+      <xs:element name="CustomerSince" type="xs:string"/>
+      <xs:sequence minOccurs="1" maxOccurs="3">
+        <xs:element name="AddressLine">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="180"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+      <xs:element name="City">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="25"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="State">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ZipCode">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+            <xs:minLength value="5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="PhoneNumber" minOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="11"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ItemType">
+    <xs:annotation>
+      <xs:documentation>This information will be populated from INVDTA/ITMMSTP from bronze where product_id = isku</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SKU">
+        <xs:annotation>
+          <xs:documentation>Column ISKU</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Quantity" type="xs:int"/>
+      <xs:element name="UnitPrice" type="MoneyType"/>
+      <xs:element name="Brand" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Column BRAND</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Model" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Column MODEL</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Category" nillable="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:totalDigits value="4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Description" nillable="true">
+        <xs:annotation>
+          <xs:documentation/>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="30"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ShippingWeight" type="xs:integer" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ShippingSpeedType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Standard"/>
+      <xs:enumeration value="Twoday"/>
+      <xs:enumeration value="Oneday"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ShippingProviderType">
+    <xs:annotation>
+      <xs:documentation>ShippingProviderType for now only contains the name of the Provider - we may expand later</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Name of the shipping provider for packing service - FedEx ups, us postal</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrderType">
+    <xs:sequence>
+      <xs:element name="OrderNumber" type="OrderNumberType" minOccurs="0"/>
+      <xs:element name="SessionID" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="OrderDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="Billing" type="PaymentType" minOccurs="1"/>
+      <xs:element name="Shipping" type="ShippingType" minOccurs="1"/>
+      <xs:element name="Email" minOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Items">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="TotalDiscount" type="xs:integer"/>
+            <xs:element name="Item" type="ItemType" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Status" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentType">
+    <xs:sequence>
+      <xs:element name="CardPaymentType">
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:pattern value="[0-5]"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CardNum">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="16"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ExpireDate">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CardName">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="BillingAddress" type="AddressType"/>
+      <xs:element name="AuthorizationDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="AuthorizationAmount" type="MoneyType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ShippingMethodType">
+    <xs:restriction base="xs:int">
+      <xs:pattern value="[1-3]{1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ShippingType">
+    <xs:sequence>
+      <xs:element name="OrderNumber" type="OrderNumberType" minOccurs="0"/>
+      <xs:element name="Address" type="AddressType"/>
+      <xs:element name="ShippingSpeed" type="ShippingSpeedType" minOccurs="0"/>
+      <xs:element name="ShippingProvider" type="ShippingProviderType" minOccurs="0"/>
+      <xs:element name="ShipMethod" type="ShippingMethodType" minOccurs="0"/>
+      <xs:element name="Status" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrderAckType">
+    <xs:sequence>
+      <xs:element name="OrderNumber" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentStatusType">
+    <xs:sequence>
+      <xs:element name="Status" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InventoryQueryType">
+    <xs:sequence>
+      <xs:element name="Category" nillable="true">
+        <xs:annotation>
+          <xs:documentation/>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:totalDigits value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InventoryType">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="SKU">
+        <xs:annotation>
+          <xs:documentation/>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="TotalQuantity" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep</con:endpoint></con:endpoints><con:operation isOneWay="false" action="process" name="process" bindingOperationName="process" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Appr 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soas="http://www.oracle.com/soasample">
+   <soapenv:Header/>
+   <soapenv:Body>
+<soas:Order  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soas="http://www.oracle.com/soasample">
+	<soas:Billing >
+		<soas:CardPaymentType>1</soas:CardPaymentType>
+		<soas:CardNum>1234123412341234</soas:CardNum>
+		<soas:ExpireDate>0316</soas:ExpireDate>
+		<soas:CardName>AMEX</soas:CardName>
+		<soas:BillingAddress>
+			<soas:FirstName>Jon</soas:FirstName>
+		    <soas:LastName>Snow</soas:LastName>
+		    <soas:Age>32</soas:Age>
+		    <soas:CustomerSince>2012</soas:CustomerSince>
+		    <soas:AddressLine>1 Wall</soas:AddressLine>
+			<soas:City>Castle Black</soas:City>
+			<soas:State>ME</soas:State>
+			<soas:ZipCode>12345</soas:ZipCode>
+			<soas:PhoneNumber>5551234567</soas:PhoneNumber>
+		</soas:BillingAddress>
+	   </soas:Billing>
+	<soas:Shipping>
+		<soas:Address>
+		    <soas:FirstName>Jon</soas:FirstName>
+			<soas:LastName>Snow</soas:LastName>
+			<soas:Age>32</soas:Age>
+		    <soas:CustomerSince>2012</soas:CustomerSince>
+		    <soas:AddressLine>1 Wall</soas:AddressLine>
+			<soas:City>Castle Black</soas:City>
+			<soas:State>ME</soas:State>
+			<soas:ZipCode>12345</soas:ZipCode>
+			<soas:PhoneNumber>5551234567</soas:PhoneNumber>
+		</soas:Address>
+		<soas:ShippingSpeed>Twoday</soas:ShippingSpeed>
+  	</soas:Shipping>
+	<soas:Email>jon@localhost</soas:Email>
+	<soas:Items>
+				 <soas:TotalDiscount>20</soas:TotalDiscount>
+	             <soas:Item>
+	      	         	 <soas:SKU>12345</soas:SKU>
+	      	         	 <soas:Quantity>10</soas:Quantity>
+	      	         	 <soas:UnitPrice>100</soas:UnitPrice>
+	      	        	 <soas:Brand>Crow</soas:Brand>
+	      	        	 <soas:Model>Valyrian Steel Sword</soas:Model>
+	      	        	 <soas:Category>1583</soas:Category>
+	      	       		 <soas:Description>Crow Valyrian Steel Sword</soas:Description>
+	      	       		 <soas:ShippingWeight>6000</soas:ShippingWeight>
+	             </soas:Item>
+	</soas:Items>
+</soas:Order>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Appr 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    	<soap:Body>
+<soas:Order  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soas="http://www.oracle.com/soasample">
+	<soas:Billing >
+		<soas:CardPaymentType>1</soas:CardPaymentType>
+		<soas:CardNum>1234123412341234</soas:CardNum>
+		<soas:ExpireDate>0316</soas:ExpireDate>
+		<soas:CardName>AMEX</soas:CardName>
+		<soas:BillingAddress>
+			<soas:FirstName>Jaime</soas:FirstName>
+		    <soas:LastName>Lannister</soas:LastName>
+		    <soas:Age>38</soas:Age>
+		    <soas:CustomerSince>2002</soas:CustomerSince>
+		    <soas:AddressLine>111 Stone Avenue</soas:AddressLine>
+			<soas:City>Casterly Rock</soas:City>
+			<soas:State>NJ</soas:State>
+			<soas:ZipCode>12345</soas:ZipCode>
+			<soas:PhoneNumber>5551234567</soas:PhoneNumber>
+		</soas:BillingAddress>
+	   </soas:Billing>
+	<soas:Shipping>
+		<soas:Address>
+		    <soas:FirstName>Jaime</soas:FirstName>
+		    <soas:LastName>Lannister</soas:LastName>
+		    <soas:Age>38</soas:Age>
+		    <soas:CustomerSince>2002</soas:CustomerSince>
+		    <soas:AddressLine>111 Stone Avenue</soas:AddressLine>
+			<soas:City>Casterly Rock</soas:City>
+			<soas:State>RI</soas:State>
+			<soas:ZipCode>12345</soas:ZipCode>
+			<soas:PhoneNumber>5551234567</soas:PhoneNumber>
+		</soas:Address>
+		<soas:ShippingSpeed>Standard</soas:ShippingSpeed>
+  	</soas:Shipping>
+	<soas:Email>jaime@localhost</soas:Email>
+	<soas:Items>
+				 <soas:TotalDiscount>10</soas:TotalDiscount>
+	             <soas:Item>
+	      	         	 <soas:SKU>11111</soas:SKU>
+	      	         	 <soas:Quantity>28728</soas:Quantity>
+	      	         	 <soas:UnitPrice>8</soas:UnitPrice>
+	      	        	 <soas:Brand>Lion</soas:Brand>
+	      	        	 <soas:Model>Golden Hand</soas:Model>
+	      	        	 <soas:Category>18579</soas:Category>
+	      	       		 <soas:Description>Lion Golden Hand</soas:Description>
+	      	       		 <soas:ShippingWeight>1000</soas:ShippingWeight>
+	             </soas:Item>
+	</soas:Items>
+</soas:Order>
+    </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Denied 4"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    	<soap:Body>
+<soas:Order  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soas="http://www.oracle.com/soasample">
+	<soas:Billing >
+		<soas:CardPaymentType>1</soas:CardPaymentType>
+		<soas:CardNum>1234123412341234</soas:CardNum>
+		<soas:ExpireDate>0317</soas:ExpireDate>
+		<soas:CardName>AMEX</soas:CardName>
+		<soas:BillingAddress>
+			<soas:FirstName>Cersei</soas:FirstName>
+		    <soas:LastName>Lannister</soas:LastName>
+		    <soas:Age>38</soas:Age>
+		    <soas:CustomerSince>2011</soas:CustomerSince>
+		    <soas:AddressLine>1 South Road</soas:AddressLine>
+			<soas:City>Kings Landing</soas:City>
+			<soas:State>FL</soas:State>
+			<soas:ZipCode>78901</soas:ZipCode>
+			<soas:PhoneNumber>5551234567</soas:PhoneNumber>
+		</soas:BillingAddress>
+	   </soas:Billing>
+	<soas:Shipping>
+		<soas:Address>
+		    <soas:FirstName>Cersei</soas:FirstName>
+		    <soas:LastName>Lannister</soas:LastName>
+		    <soas:Age>38</soas:Age>
+		    <soas:CustomerSince>2011</soas:CustomerSince>
+		    <soas:AddressLine>1 South Road</soas:AddressLine>
+			<soas:City>Kings Landing</soas:City>
+			<soas:State>FL</soas:State>
+			<soas:ZipCode>78901</soas:ZipCode>
+			<soas:PhoneNumber>5551234567</soas:PhoneNumber>
+		</soas:Address>
+		<soas:ShippingSpeed>Oneday</soas:ShippingSpeed>
+  	</soas:Shipping>
+	<soas:Email>cersei@localhost</soas:Email>
+	<soas:Items>
+			     <soas:TotalDiscount>3</soas:TotalDiscount>
+	             <soas:Item>
+	      	         	 <soas:SKU>03846</soas:SKU>
+	      	         	 <soas:Quantity>8</soas:Quantity>
+	      	         	 <soas:UnitPrice>20</soas:UnitPrice>
+	      	        	 <soas:Brand>Lion</soas:Brand>
+	      	        	 <soas:Model>Goblet</soas:Model>
+	      	        	 <soas:Category>83745</soas:Category>
+	      	       		 <soas:Description>Lion Goblet</soas:Description>
+	      	       		 <soas:ShippingWeight>80</soas:ShippingWeight>
+	             </soas:Item>
+	</soas:Items>
+</soas:Order>
+    </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Denied 9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    	<soap:Body>
+<soas:Order  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soas="http://www.oracle.com/soasample">
+	<soas:Billing >
+		<soas:CardPaymentType>1</soas:CardPaymentType>
+		<soas:CardNum>1234123412341234</soas:CardNum>
+		<soas:ExpireDate>0317</soas:ExpireDate>
+		<soas:CardName>AMEX</soas:CardName>
+		<soas:BillingAddress>
+			<soas:FirstName>Brienne</soas:FirstName>
+		    <soas:LastName>of Tarth</soas:LastName>
+		    <soas:Age>28</soas:Age>
+		    <soas:CustomerSince>2009</soas:CustomerSince>
+		    <soas:AddressLine>56 Stormland</soas:AddressLine>
+			<soas:City>Evenfall Hall</soas:City>
+			<soas:State>NJ</soas:State>
+			<soas:ZipCode>86273</soas:ZipCode>
+			<soas:PhoneNumber>5551234567</soas:PhoneNumber>
+		</soas:BillingAddress>
+	   </soas:Billing>
+	<soas:Shipping>
+		<soas:Address>
+		    <soas:FirstName>Brienne</soas:FirstName>
+		    <soas:LastName>of Tarth</soas:LastName>
+		    <soas:Age>28</soas:Age>
+		    <soas:CustomerSince>2009</soas:CustomerSince>
+		    <soas:AddressLine>56 Stormland</soas:AddressLine>
+			<soas:City>Evenfall Hall</soas:City>
+			<soas:State>NJ</soas:State>
+			<soas:ZipCode>86273</soas:ZipCode>
+			<soas:PhoneNumber>5551234567</soas:PhoneNumber>
+		</soas:Address>
+		<soas:ShippingSpeed>Standard</soas:ShippingSpeed>
+  	</soas:Shipping>
+	<soas:Email>brienne@localhost</soas:Email>
+	<soas:Items>
+			     <soas:TotalDiscount>9</soas:TotalDiscount>
+	             <soas:Item>
+	      	         	 <soas:SKU>8762</soas:SKU>
+	      	         	 <soas:Quantity>50</soas:Quantity>
+	      	         	 <soas:UnitPrice>3</soas:UnitPrice>
+	      	        	 <soas:Brand>Silver</soas:Brand>
+	      	        	 <soas:Model>Body Armor</soas:Model>
+	      	        	 <soas:Category>39</soas:Category>
+	      	       		 <soas:Description>Silver Body Armor</soas:Description>
+	      	       		 <soas:ShippingWeight>10000</soas:ShippingWeight>
+	             </soas:Item>
+	</soas:Items>
+</soas:Order>
+    </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Appr 5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/soa-infra/services/default/ProcessOrder/receiveorder_client_ep</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    	<soap:Body>
+<soas:Order  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soas="http://www.oracle.com/soasample">
+	<soas:Billing >
+		<soas:CardPaymentType>1</soas:CardPaymentType>
+		<soas:CardNum>1234123412341234</soas:CardNum>
+		<soas:ExpireDate>0316</soas:ExpireDate>
+		<soas:CardName>AMEX</soas:CardName>
+		<soas:BillingAddress>
+			<soas:FirstName>Khal</soas:FirstName>
+		    <soas:LastName>Drogo</soas:LastName>
+		    <soas:Age>35</soas:Age>
+		    <soas:CustomerSince>1999</soas:CustomerSince>
+		    <soas:AddressLine>60 Desert Lane</soas:AddressLine>
+			<soas:City>Dothraki</soas:City>
+			<soas:State>CA</soas:State>
+			<soas:ZipCode>93865</soas:ZipCode>
+			<soas:PhoneNumber>5551234567</soas:PhoneNumber>
+		</soas:BillingAddress>
+	   </soas:Billing>
+	<soas:Shipping>
+		<soas:Address>
+		    <soas:FirstName>Khal</soas:FirstName>
+		    <soas:LastName>Drogo</soas:LastName>
+		    <soas:Age>35</soas:Age>
+		    <soas:CustomerSince>1999</soas:CustomerSince>
+		    <soas:AddressLine>60 Desert Lane</soas:AddressLine>
+			<soas:City>Dothraki</soas:City>
+			<soas:State>TX</soas:State>
+			<soas:ZipCode>93865</soas:ZipCode>
+			<soas:PhoneNumber>5551234567</soas:PhoneNumber>
+		</soas:Address>
+		<soas:ShippingSpeed>Twoday</soas:ShippingSpeed>
+  	</soas:Shipping>
+	<soas:Email>drogo@localhost</soas:Email>
+	<soas:Items>
+			     <soas:TotalDiscount>12</soas:TotalDiscount>
+	             <soas:Item>
+	      	         	 <soas:SKU>7365</soas:SKU>
+	      	         	 <soas:Quantity>8</soas:Quantity>
+	      	         	 <soas:UnitPrice>20</soas:UnitPrice>
+	      	        	 <soas:Brand>Stallion</soas:Brand>
+	      	        	 <soas:Model>Saddle</soas:Model>
+	      	        	 <soas:Category>83</soas:Category>
+	      	       		 <soas:Description>Stallion Saddle</soas:Description>
+	      	       		 <soas:ShippingWeight>7000</soas:ShippingWeight>
+	             </soas:Item>
+	</soas:Items>
+</soas:Order>
+    </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ReturnOrder" type="wsdl" bindingName="{http://oracle.com/sca/soapservice/e2e-1201-composites/FulfillOrder/receiveOrderReturn}execute_pttBinding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/soa-infra/services/default/FulfillOrder/receiveOrderReturn?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/soa-infra/services/default/FulfillOrder/receiveOrderReturn?WSDL"><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/default/FulfillOrder/receiveOrderReturn?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="receiveOrderReturn" targetNamespace="http://oracle.com/sca/soapservice/e2e-1201-composites/FulfillOrder/receiveOrderReturn" xmlns:tns="http://oracle.com/sca/soapservice/e2e-1201-composites/FulfillOrder/receiveOrderReturn" xmlns:inp1="http://www.oracle.com/soasample" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://10.10.10.29:7001/soa-infra/services/default/FulfillOrder!1.0/WSDLs/receiveOrderReturn.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://www.oracle.com/soasample" schemaLocation="http://10.10.10.29:7001/soa-infra/services/default/FulfillOrder/receiveOrderReturn?XSD=../Schemas/orderReturn.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="requestMessage">
+    <wsdl:part name="orderReturn" element="inp1:OrderReturn"/>
+  </wsdl:message>
+  <wsdl:portType name="execute_ptt">
+    <wsdl:operation name="execute">
+      <wsdl:input message="tns:requestMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="execute_pttBinding" type="tns:execute_ptt">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="execute">
+      <soap:operation style="document" soapAction="execute"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="receiveOrderReturn">
+    <wsdl:port name="execute_pt" binding="tns:execute_pttBinding">
+      <soap:address location="http://10.10.10.29:7001/soa-infra/services/default/FulfillOrder/receiveOrderReturn"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/default/FulfillOrder/receiveOrderReturn?XSD=../Schemas/orderReturn.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://www.oracle.com/soasample" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.oracle.com/soasample">
+  <xsd:element name="OrderReturn" type="OrderReturnType">
+    <xsd:annotation>
+      <xsd:documentation>Order Return Document</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="OrderNumber" type="OrderNumberType">
+    <xsd:annotation>
+      <xsd:documentation>Order Number</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ReturnReason" type="ReturnReasonType">
+    <xsd:annotation>
+      <xsd:documentation>Return Reason</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="CustomerID" type="CustomerIDType">
+    <xsd:annotation>
+      <xsd:documentation>Return Reason</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:simpleType name="OrderNumberType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="25"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CustomerIDType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="100"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ReturnReasonType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="1000"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="OrderReturnType">
+    <xsd:sequence minOccurs="1" maxOccurs="1">
+      <xsd:element name="OrderNumber" type="OrderNumberType" minOccurs="1"/>
+      <xsd:element name="CustomerID" type="CustomerIDType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="ReturnReason" type="ReturnReasonType" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.10.10.29:7001/soa-infra/services/default/FulfillOrder/receiveOrderReturn</con:endpoint></con:endpoints><con:operation isOneWay="false" action="execute" name="execute" bindingOperationName="execute" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/soa-infra/services/default/FulfillOrder/receiveOrderReturn</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soas="http://www.oracle.com/soasample">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <soas:OrderReturn>
+         <soas:OrderNumber>20163215383232</soas:OrderNumber>
+         <soas:CustomerID>34</soas:CustomerID>
+         <soas:ReturnReason>Lelijk</soas:ReturnReason>
+      </soas:OrderReturn>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="execute"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="200508" name="SOA-HelloBinding-" type="wsdl" bindingName="{http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello}HelloBinding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep</con:endpoint></con:endpoints><con:operation isOneWay="false" action="process" name="process" bindingOperationName="process" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hel="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hel:process>
+         <hel:input>Klaas13344</hel:input>
+      </hel:process>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="HelloCallbackBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello}HelloCallbackBinding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep?WSDL"><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="Hello" targetNamespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight!1.0/WSDLs/Hello.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="Hello">
+    <plnk:role name="HelloProvider" portType="client:Hello"/>
+    <plnk:role name="HelloRequester" portType="client:HelloCallback"/>
+  </plnk:partnerLinkType>
+  <wsp:Policy wsu:Id="wsaddr_policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+    <wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"/>
+  </wsp:Policy>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" schemaLocation="http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep?XSD=../Schemas/Hello.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="HelloRequestMessage">
+    <wsdl:part name="payload" element="client:process"/>
+  </wsdl:message>
+  <wsdl:message name="HelloResponseMessage">
+    <wsdl:part name="payload" element="client:processResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="Hello">
+    <wsdl:operation name="process">
+      <wsdl:input message="client:HelloRequestMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="HelloCallback">
+    <wsdl:operation name="processResponse">
+      <wsdl:input message="client:HelloResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloBinding" type="client:Hello">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsp:PolicyReference URI="#wsaddr_policy" wsdl:required="false" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"/>
+    <wsdl:operation name="process">
+      <soap:operation style="document" soapAction="process"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HelloCallbackBinding" type="client:HelloCallback">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="processResponse">
+      <soap:operation style="document" soapAction="processResponse"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="hello_client_ep">
+    <wsdl:port name="Hello_pt" binding="client:HelloBinding">
+      <soap:address location="http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep?XSD=../Schemas/Hello.xsd</con:url><con:content><![CDATA[<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="process">
+    <complexType>
+      <sequence>
+        <element name="input" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processResponse">
+    <complexType>
+      <sequence>
+        <element name="result" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints/><con:operation isOneWay="false" action="processResponse" name="processResponse" bindingOperationName="processResponse" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hel="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hel:processResponse>
+         <hel:result>?</hel:result>
+      </hel:processResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="processResponse"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SB-HelloSOAP11Binding" type="wsdl" bindingName="{http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello}HelloSOAP11Binding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService?wsdl"><con:part><con:url>http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="Hello" targetNamespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" xmlns:client="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <plnk:partnerLinkType name="Hello">
+    <plnk:role name="HelloProvider" portType="client:Hello"/>
+    <plnk:role name="HelloRequester" portType="client:HelloCallback"/>
+  </plnk:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" schemaLocation="http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService?SCHEMA%2FSB-trial-insight%2FSchemas%2FHello"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="HelloRequestMessage">
+    <wsdl:part element="client:process" name="payload"/>
+  </wsdl:message>
+  <wsdl:message name="HelloResponseMessage">
+    <wsdl:part element="client:processResponse" name="payload"/>
+  </wsdl:message>
+  <wsdl:portType name="Hello">
+    <wsdl:operation name="process">
+      <wsdl:input message="client:HelloRequestMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloSOAP11Binding" type="client:Hello">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="process">
+      <soap:operation soapAction="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello/process" style="document"/>
+      <wsdl:input>
+        <soap:body parts="payload" use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloSOAP11BindingQSService">
+    <wsdl:documentation>OSB Service</wsdl:documentation>
+    <wsdl:port binding="client:HelloSOAP11Binding" name="HelloSOAP11BindingQSPort">
+      <soap:address location="http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService?SCHEMA%2FSB-trial-insight%2FSchemas%2FHello</con:url><con:content><![CDATA[<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="process">
+    <complexType>
+      <sequence>
+        <element name="input" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processResponse">
+    <complexType>
+      <sequence>
+        <element name="result" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello/process" name="process" bindingOperationName="process" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hel="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hel:process>
+         <hel:input>Annais</hel:input>
+      </hel:process>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello/process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Submit-Proposal-REST" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://10.10.10.29</con:endpoint></con:endpoints><con:resource name="SubmitArtistProposalService" path="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals"><con:settings/><con:parameters/><con:method name="SubmitArtistProposalService" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal">art:Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>500</con:status><con:params/></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "me21"
+                 , "event" : "Oracle OpenWorld 2016"
+ , "numberOfVotes" : 19
+ , "motivation" : "Mark likes them!"
+ }
+} </con:request><con:originalUri>http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SubmitArtistProposalService-inner-SB" type="wsdl" bindingName="{http://xmlns.oracle.com/ArtistsForEvents/SubmitArtistProposalForEvent/SubmitArtistProposalService}SubmitArtistProposalService_ptt-binding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?wsdl"><con:part><con:url>http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="SubmitArtistProposalService" targetNamespace="http://xmlns.oracle.com/ArtistsForEvents/SubmitArtistProposalForEvent/SubmitArtistProposalService" xmlns:inp1="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request" xmlns:inp2="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_response" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://xmlns.oracle.com/ArtistsForEvents/SubmitArtistProposalForEvent/SubmitArtistProposalService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <plnk:partnerLinkType name="SubmitArtistProposalService">
+    <plnk:role name="SubmitArtistProposalServiceProvider" portType="tns:SubmitArtistProposalService_ptt"/>
+  </plnk:partnerLinkType>
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request" schemaLocation="http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?SCHEMA%2FSubmitArtistProposalForEvent%2FResources%2Fnxsd_json-artistProposal"/>
+    </xsd:schema>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_response" schemaLocation="http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?SCHEMA%2FSubmitArtistProposalForEvent%2FResources%2Fnxsd_json-artistProposal-response"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="submitArtistProposal_inputMessage">
+    <wsdl:part element="inp1:proposal" name="request"/>
+  </wsdl:message>
+  <wsdl:message name="submitArtistProposal_outputMessage">
+    <wsdl:part element="inp2:actProposal-response" name="reply"/>
+  </wsdl:message>
+  <wsdl:portType name="SubmitArtistProposalService_ptt">
+    <wsdl:operation name="submitArtistProposal">
+      <wsdl:input message="tns:submitArtistProposal_inputMessage"/>
+      <wsdl:output message="tns:submitArtistProposal_outputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SubmitArtistProposalService_ptt-binding" type="tns:SubmitArtistProposalService_ptt">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="submitArtistProposal">
+      <soap:operation soapAction="submitArtistProposal"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SubmitArtistProposalService_ptt-bindingQSService">
+    <wsdl:documentation>OSB Service</wsdl:documentation>
+    <wsdl:port binding="tns:SubmitArtistProposalService_ptt-binding" name="SubmitArtistProposalService_ptt-bindingQSPort">
+      <soap:address location="http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?SCHEMA%2FSubmitArtistProposalForEvent%2FResources%2Fnxsd_json-artistProposal</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request" elementFormDefault="qualified" nxsd:version="JSON" nxsd:encoding="UTF-8" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd">
+  <xsd:element name="proposal">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="proposedAct">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="artist" type="xsd:string"/>
+              <xsd:element name="event" type="xsd:string"/>
+              <xsd:element name="numberOfVotes" type="xsd:integer"/>
+              <xsd:element name="motivation" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=/C:/data/Insight-demo-Valencia-march2016/ArtistsForEvents/SubmitArtistProposalForEvent/Resources/submitArtistProposal-request-sample.json</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?SCHEMA%2FSubmitArtistProposalForEvent%2FResources%2Fnxsd_json-artistProposal-response</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_response" elementFormDefault="qualified" nxsd:version="JSON" nxsd:encoding="US-ASCII" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_response" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd">
+  <xsd:element name="actProposal-response">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="registeredActProposal">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="artist" type="xsd:string"/>
+              <xsd:element name="event" type="xsd:string"/>
+              <xsd:element name="registrationId" type="xsd:integer"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration</con:endpoint></con:endpoints><con:operation isOneWay="false" action="submitArtistProposal" name="submitArtistProposal" bindingOperationName="submitArtistProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sub="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sub:proposal>
+         <sub:proposedAct>
+            <sub:artist>Henk</sub:artist>
+            <sub:event>ODTUG</sub:event>
+            <sub:numberOfVotes>2</sub:numberOfVotes>
+            <sub:motivation>Seems like </sub:motivation>
+         </sub:proposedAct>
+      </sub:proposal>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitArtistProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="Propose Artist for Event (public, SOAP)" type="wsdl" bindingName="{http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline}execute_bind" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService/?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService/?wsdl"><con:part><con:url>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService/?wsdl</con:url><con:content><![CDATA[<WL5G3N0:definitions name="HandleArtistProposalPipeline" targetNamespace="http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="valencia.insight.demo" xmlns:WL5G3N2="http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xsd:schema xmlns:inp1="valencia.insight.demo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="valencia.insight.demo" schemaLocation="http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService/?SCHEMA%2FProposeArtistSOAP%2FProposeArtistService"/>
+    </xsd:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="requestMessage">
+    <WL5G3N0:part element="WL5G3N1:proposal" name="part1"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="replyMessage">
+    <WL5G3N0:part element="WL5G3N1:proposalResponse" name="part1"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="execute_ptt">
+    <WL5G3N0:operation name="proposeArtistForEvent">
+      <WL5G3N0:input message="WL5G3N2:requestMessage"/>
+      <WL5G3N0:output message="WL5G3N2:replyMessage"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="execute_bind" type="WL5G3N2:execute_ptt">
+    <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="proposeArtistForEvent">
+      <WL5G3N3:operation soapAction="proposeArtistForEvent" style="document"/>
+      <WL5G3N0:input>
+        <WL5G3N3:body namespace="http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline" use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body namespace="http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline" use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="execute_bindQSService">
+    <WL5G3N0:documentation>OSB Service</WL5G3N0:documentation>
+    <WL5G3N0:port binding="WL5G3N2:execute_bind" name="execute_bindQSPort">
+      <WL5G3N3:address location="http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService/?SCHEMA%2FProposeArtistSOAP%2FProposeArtistService</con:url><con:content><![CDATA[<xsd:schema targetNamespace="valencia.insight.demo" elementFormDefault="qualified" nxsd:version="JSON" nxsd:encoding="UTF-8" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="valencia.insight.demo" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd">
+  <xsd:element name="proposal">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="proposedAct">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="artist" type="xsd:string"/>
+              <xsd:element name="event" type="xsd:string"/>
+              <xsd:element name="numberOfVotes" type="xsd:integer"/>
+              <xsd:element name="motivation" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="proposalResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="proposedActIdentifier" type="xsd:integer"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="proposeArtistForEvent" name="proposeArtistForEvent" bindingOperationName="proposeArtistForEvent" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="adele-bth2016"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:val="valencia.insight.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <val:proposal>
+         <val:proposedAct>
+            <val:artist>adele</val:artist>
+            <val:event>beyond the horizon 2016</val:event>
+            <val:numberOfVotes>26</val:numberOfVotes>
+            <val:motivation>You really need a motivation for this?</val:motivation>
+         </val:proposedAct>
+      </val:proposal>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="proposeArtistForEvent"/><con:wsrmConfig version="1.2"/></con:call><con:call name="paulYoung-bth2016"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:val="valencia.insight.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <val:proposal>
+         <val:proposedAct>
+            <val:artist>paul young</val:artist>
+            <val:event>beyond the horizon 2016</val:event>
+            <val:numberOfVotes>16</val:numberOfVotes>
+            <val:motivation>Historical considerations</val:motivation>
+         </val:proposedAct>
+      </val:proposal>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="proposeArtistForEvent"/><con:wsrmConfig version="1.2"/></con:call><con:call name="duranduran-bth2016"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:val="valencia.insight.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <val:proposal>
+         <val:proposedAct>
+            <val:artist>duran duran</val:artist>
+            <val:event>beyond the horizon 2016</val:event>
+            <val:numberOfVotes>1</val:numberOfVotes>
+            <val:motivation>Historical considerations</val:motivation>
+         </val:proposedAct>
+      </val:proposal>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="proposeArtistForEvent"/><con:wsrmConfig version="1.2"/></con:call><con:call name="bruceSpringsteen-bth2016"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:val="valencia.insight.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <val:proposal>
+         <val:proposedAct>
+            <val:artist>bruce springsteen</val:artist>
+            <val:event>beyond the horizon 2016</val:event>
+            <val:numberOfVotes>17</val:numberOfVotes>
+            <val:motivation>He is the boss</val:motivation>
+         </val:proposedAct>
+      </val:proposal>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="proposeArtistForEvent"/><con:wsrmConfig version="1.2"/></con:call><con:call name="brunoMars-bth2016"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:val="valencia.insight.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <val:proposal>
+         <val:proposedAct>
+            <val:artist>burno mars</val:artist>
+            <val:event>beyond the horizon 2016</val:event>
+            <val:numberOfVotes>174</val:numberOfVotes>
+            <val:motivation>appealing to various age groups</val:motivation>
+         </val:proposedAct>
+      </val:proposal>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="proposeArtistForEvent"/><con:wsrmConfig version="1.2"/></con:call><con:call name="eltonJohn-bth2016"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:val="valencia.insight.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <val:proposal>
+         <val:proposedAct>
+            <val:artist>elton john</val:artist>
+            <val:event>beyond the horizon 2016</val:event>
+            <val:numberOfVotes>14</val:numberOfVotes>
+            <val:motivation>did a nice job at oow 2015</val:motivation>
+         </val:proposedAct>
+      </val:proposal>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="proposeArtistForEvent"/><con:wsrmConfig version="1.2"/></con:call><con:call name="bzn-bth2016"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:val="valencia.insight.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <val:proposal>
+         <val:proposedAct>
+            <val:artist>bzn</val:artist>
+            <val:event>beyond the horizon 2016</val:event>
+            <val:numberOfVotes>1</val:numberOfVotes>
+            <val:motivation>I used to like them when I was 7 years old</val:motivation>
+         </val:proposedAct>
+      </val:proposal>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="proposeArtistForEvent"/><con:wsrmConfig version="1.2"/></con:call><con:call name="maroon5-bth2016"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:val="valencia.insight.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <val:proposal>
+         <val:proposedAct>
+            <val:artist>maroon 5</val:artist>
+            <val:event>beyond the horizon 2016</val:event>
+            <val:numberOfVotes>67</val:numberOfVotes>
+            <val:motivation>because the real mick jagger is too expensive</val:motivation>
+         </val:proposedAct>
+      </val:proposal>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="proposeArtistForEvent"/><con:wsrmConfig version="1.2"/></con:call><con:call name="aerosmith-bth2016"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:val="valencia.insight.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <val:proposal>
+         <val:proposedAct>
+            <val:artist>aerosmith</val:artist>
+            <val:event>beyond the horizon 2016</val:event>
+            <val:numberOfVotes>2</val:numberOfVotes>
+            <val:motivation>some fans out there</val:motivation>
+         </val:proposedAct>
+      </val:proposal>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="proposeArtistForEvent"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SendInArtistProposal for event -SOAP, SOA" type="wsdl" bindingName="{http://oracle.com/sca/soapservice/SendInArtistProposal/SendInArtistProposal/SendInArtistProposal}SendInArtistProposalServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/soa-infra/services/valencia-demo/SendInArtistProposal/SendInArtistProposal?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/soa-infra/services/valencia-demo/SendInArtistProposal/SendInArtistProposal?WSDL"><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/valencia-demo/SendInArtistProposal/SendInArtistProposal?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="SendInArtistProposal" targetNamespace="http://oracle.com/sca/soapservice/SendInArtistProposal/SendInArtistProposal/SendInArtistProposal" xmlns:tns="http://oracle.com/sca/soapservice/SendInArtistProposal/SendInArtistProposal/SendInArtistProposal" xmlns:inp1="valencia.insight.demo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://10.10.10.29:7001/soa-infra/services/valencia-demo/SendInArtistProposal!1.0/WSDLs/SendInArtistProposal.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="valencia.insight.demo" schemaLocation="http://10.10.10.29:7001/soa-infra/services/valencia-demo/SendInArtistProposal/SendInArtistProposal?XSD=../Schemas/ProposeArtistService.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="requestMessage">
+    <wsdl:part name="part1" element="inp1:proposal"/>
+  </wsdl:message>
+  <wsdl:message name="replyMessage">
+    <wsdl:part name="part1" element="inp1:proposalResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="SendInArtistProposalService">
+    <wsdl:operation name="sendInProposal">
+      <wsdl:input message="tns:requestMessage"/>
+      <wsdl:output message="tns:replyMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SendInArtistProposalServiceBinding" type="tns:SendInArtistProposalService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sendInProposal">
+      <soap:operation style="document" soapAction="sendInProposal"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SendInArtistProposal">
+    <wsdl:port name="SendInArtistProposalService_pt" binding="tns:SendInArtistProposalServiceBinding">
+      <soap:address location="http://10.10.10.29:7001/soa-infra/services/valencia-demo/SendInArtistProposal/SendInArtistProposal"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/valencia-demo/SendInArtistProposal/SendInArtistProposal?XSD=../Schemas/ProposeArtistService.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="valencia.insight.demo" elementFormDefault="qualified" nxsd:version="JSON" nxsd:encoding="UTF-8" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="valencia.insight.demo" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd">
+  <xsd:element name="proposal">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="proposedAct">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="artist" type="xsd:string"/>
+              <xsd:element name="event" type="xsd:string"/>
+              <xsd:element name="numberOfVotes" type="xsd:integer"/>
+              <xsd:element name="motivation" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="proposalResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="proposedActIdentifier" type="xsd:integer"/>
+        <xsd:element name="artist" type="xsd:string"/>
+        <xsd:element name="event" type="xsd:string"/>
+        <xsd:element name="numberOfVotes" type="xsd:integer"/>
+        <xsd:element name="motivation" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.10.10.29:7001/soa-infra/services/valencia-demo/SendInArtistProposal/SendInArtistProposal</con:endpoint></con:endpoints><con:operation isOneWay="false" action="sendInProposal" name="sendInProposal" bindingOperationName="sendInProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/soa-infra/services/valencia-demo/SendInArtistProposal/SendInArtistProposal</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:val="valencia.insight.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <val:proposal>
+         <val:proposedAct>
+            <val:artist>AC/DC</val:artist>
+            <val:event>oow2016</val:event>
+            <val:numberOfVotes>7</val:numberOfVotes>
+            <val:motivation>last chance perhaps</val:motivation>
+         </val:proposedAct>
+      </val:proposal>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendInProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="Submit-Proposal-REST TestSuite"><con:description>TestSuite generated for REST Service [Submit-Proposal-REST]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="SubmitArtistProposalService TestCase" searchProperties="true"><con:description>TestCase generated for REST Resource [SubmitArtistProposalService] located at [/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal]</con:description><con:settings/><con:testStep type="restrequest" name="SimpleMinds-oow2016"><con:settings/><con:config service="Submit-Proposal-REST" resourcePath="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals" methodName="SubmitArtistProposalService" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="SimpleMinds-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "simple mind"
+                 , "event" : "Oracle OpenWorld 2016"
+ , "numberOfVotes" : 1
+ , "motivation" : "'For old times sake!"
+ }
+} </con:request><con:originalUri>http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="TalkingHeads-oow2016"><con:settings/><con:config service="Submit-Proposal-REST" resourcePath="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals" methodName="SubmitArtistProposalService" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="TalkingHeads-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "talking heads"
+                 , "event" : "Oracle OpenWorld 2016"
+ , "numberOfVotes" : 19
+ , "motivation" : "'For old times sake!"
+ }
+} </con:request><con:originalUri>http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Shakira-oow2016"><con:settings/><con:config service="Submit-Proposal-REST" resourcePath="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals" methodName="SubmitArtistProposalService" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Shakira-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "shakira"
+                 , "event" : "Oracle OpenWorld 2016"
+ , "numberOfVotes" : 2
+ , "motivation" : "It's time for Africa/Colombia"
+ }
+} </con:request><con:originalUri>http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="RadioHead-oow2016"><con:settings/><con:config service="Submit-Proposal-REST" resourcePath="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals" methodName="SubmitArtistProposalService" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="RadioHead-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "radio head"
+                 , "event" : "Oracle OpenWorld 2016"
+ , "numberOfVotes" : 2
+ , "motivation" : "Cool!"
+ }
+} </con:request><con:originalUri>http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
