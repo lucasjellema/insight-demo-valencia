@@ -81,6 +81,11 @@ procedure update_act_proposal_status
 , p_new_status in varchar2
 );
 
+/* close all proposals for the event p_event or those for same event as the proposal_id passed in */
+procedure close_act_proposals_for_event
+( p_proposal_id in number
+, p_event in varchar2
+);
 
 procedure verify_proposal_for_act
 ( p_act_name in out varchar2
@@ -177,6 +182,30 @@ begin
                 OR pa.id = p_id 
     ;
 end update_act_proposal_status;
+
+/* close all proposals for the event p_event or those for same event as the proposal_id passed in */
+procedure close_act_proposals_for_event
+( p_proposal_id in number
+, p_event in varchar2
+) is
+begin
+  if p_event is not null
+  then
+    update  proposed_acts pa
+	set     status = 'closed'
+	where   upper(pa.event) = upper(p_event)
+    ;
+  else
+    update  proposed_acts pa
+	set     status = 'closed'
+	where   event = ( select pa2.event 
+	                  from   proposed_acts pa2
+					  where  pa2.id = p_proposal_id
+					)
+    ;
+  end if;	      
+end close_act_proposals_for_event;
+
 
 
 procedure verify_proposal_for_act
