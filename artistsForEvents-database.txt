@@ -194,6 +194,7 @@ begin
     update  proposed_acts pa
 	set     status = 'closed'
 	where   upper(pa.event) = upper(p_event)
+	and     status = 'approved'
     ;
   else
     update  proposed_acts pa
@@ -202,6 +203,7 @@ begin
 	                  from   proposed_acts pa2
 					  where  pa2.id = p_proposal_id
 					)
+	and     status = 'approved'
     ;
   end if;	      
 end close_act_proposals_for_event;
