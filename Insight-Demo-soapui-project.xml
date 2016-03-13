@@ -672,150 +672,7 @@
          <soas:ReturnReason>Lelijk</soas:ReturnReason>
       </soas:OrderReturn>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="execute"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="200508" name="SOA-HelloBinding-" type="wsdl" bindingName="{http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello}HelloBinding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep</con:endpoint></con:endpoints><con:operation isOneWay="false" action="process" name="process" bindingOperationName="process" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hel="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <hel:process>
-         <hel:input>Klaas13344</hel:input>
-      </hel:process>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="HelloCallbackBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello}HelloCallbackBinding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep?WSDL"><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="Hello" targetNamespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
-  <wsdl:documentation>
-    <abstractWSDL>http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight!1.0/WSDLs/Hello.wsdl</abstractWSDL>
-  </wsdl:documentation>
-  <plnk:partnerLinkType name="Hello">
-    <plnk:role name="HelloProvider" portType="client:Hello"/>
-    <plnk:role name="HelloRequester" portType="client:HelloCallback"/>
-  </plnk:partnerLinkType>
-  <wsp:Policy wsu:Id="wsaddr_policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
-    <wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"/>
-  </wsp:Policy>
-  <wsdl:types>
-    <schema xmlns="http://www.w3.org/2001/XMLSchema">
-      <import namespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" schemaLocation="http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep?XSD=../Schemas/Hello.xsd"/>
-    </schema>
-  </wsdl:types>
-  <wsdl:message name="HelloRequestMessage">
-    <wsdl:part name="payload" element="client:process"/>
-  </wsdl:message>
-  <wsdl:message name="HelloResponseMessage">
-    <wsdl:part name="payload" element="client:processResponse"/>
-  </wsdl:message>
-  <wsdl:portType name="Hello">
-    <wsdl:operation name="process">
-      <wsdl:input message="client:HelloRequestMessage"/>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="HelloCallback">
-    <wsdl:operation name="processResponse">
-      <wsdl:input message="client:HelloResponseMessage"/>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="HelloBinding" type="client:Hello">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsp:PolicyReference URI="#wsaddr_policy" wsdl:required="false" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"/>
-    <wsdl:operation name="process">
-      <soap:operation style="document" soapAction="process"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="HelloCallbackBinding" type="client:HelloCallback">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="processResponse">
-      <soap:operation style="document" soapAction="processResponse"/>
-      <wsdl:input>
-        <soap:body use="literal" namespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello"/>
-      </wsdl:input>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="hello_client_ep">
-    <wsdl:port name="Hello_pt" binding="client:HelloBinding">
-      <soap:address location="http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep"/>
-    </wsdl:port>
-  </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/default/SOA-trial-insight/hello_client_ep?XSD=../Schemas/Hello.xsd</con:url><con:content><![CDATA[<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" xmlns="http://www.w3.org/2001/XMLSchema">
-  <element name="process">
-    <complexType>
-      <sequence>
-        <element name="input" type="string"/>
-      </sequence>
-    </complexType>
-  </element>
-  <element name="processResponse">
-    <complexType>
-      <sequence>
-        <element name="result" type="string"/>
-      </sequence>
-    </complexType>
-  </element>
-</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints/><con:operation isOneWay="false" action="processResponse" name="processResponse" bindingOperationName="processResponse" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hel="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <hel:processResponse>
-         <hel:result>?</hel:result>
-      </hel:processResponse>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="processResponse"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SB-HelloSOAP11Binding" type="wsdl" bindingName="{http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello}HelloSOAP11Binding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService?wsdl"><con:part><con:url>http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="Hello" targetNamespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" xmlns:client="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <plnk:partnerLinkType name="Hello">
-    <plnk:role name="HelloProvider" portType="client:Hello"/>
-    <plnk:role name="HelloRequester" portType="client:HelloCallback"/>
-  </plnk:partnerLinkType>
-  <wsdl:types>
-    <schema xmlns="http://www.w3.org/2001/XMLSchema">
-      <import namespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" schemaLocation="http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService?SCHEMA%2FSB-trial-insight%2FSchemas%2FHello"/>
-    </schema>
-  </wsdl:types>
-  <wsdl:message name="HelloRequestMessage">
-    <wsdl:part element="client:process" name="payload"/>
-  </wsdl:message>
-  <wsdl:message name="HelloResponseMessage">
-    <wsdl:part element="client:processResponse" name="payload"/>
-  </wsdl:message>
-  <wsdl:portType name="Hello">
-    <wsdl:operation name="process">
-      <wsdl:input message="client:HelloRequestMessage"/>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="HelloSOAP11Binding" type="client:Hello">
-    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="process">
-      <soap:operation soapAction="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello/process" style="document"/>
-      <wsdl:input>
-        <soap:body parts="payload" use="literal"/>
-      </wsdl:input>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="HelloSOAP11BindingQSService">
-    <wsdl:documentation>OSB Service</wsdl:documentation>
-    <wsdl:port binding="client:HelloSOAP11Binding" name="HelloSOAP11BindingQSPort">
-      <soap:address location="http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService"/>
-    </wsdl:port>
-  </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService?SCHEMA%2FSB-trial-insight%2FSchemas%2FHello</con:url><con:content><![CDATA[<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello" xmlns="http://www.w3.org/2001/XMLSchema">
-  <element name="process">
-    <complexType>
-      <sequence>
-        <element name="input" type="string"/>
-      </sequence>
-    </complexType>
-  </element>
-  <element name="processResponse">
-    <complexType>
-      <sequence>
-        <element name="result" type="string"/>
-      </sequence>
-    </complexType>
-  </element>
-</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello/process" name="process" bindingOperationName="process" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/SB-trial-insight/PipelineOneProxyService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hel="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <hel:process>
-         <hel:input>Annais</hel:input>
-      </hel:process>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.oracle.com/TrialApp_SOA/SOA_trial_insight/Hello/process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Submit-Proposal-REST" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://10.10.10.29</con:endpoint></con:endpoints><con:resource name="SubmitArtistProposalService" path="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals"><con:settings/><con:parameters/><con:method name="SubmitArtistProposalService" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal">art:Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>500</con:status><con:params/></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "me21"
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="execute"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Submit-Proposal-REST" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://10.10.10.29</con:endpoint></con:endpoints><con:resource name="SubmitArtistProposalService" path="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals"><con:settings/><con:parameters/><con:method name="SubmitArtistProposalService" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal">art:Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>500</con:status><con:params/></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "me21"
                  , "event" : "Oracle OpenWorld 2016"
  , "numberOfVotes" : 19
  , "motivation" : "Mark likes them!"
@@ -994,8 +851,8 @@
          <val:proposedAct>
             <val:artist>paul young</val:artist>
             <val:event>beyond the horizon 2016</val:event>
-            <val:numberOfVotes>16</val:numberOfVotes>
-            <val:motivation>Historical considerations</val:motivation>
+            <val:numberOfVotes>6</val:numberOfVotes>
+            <val:motivation>Personal, Historical considerations</val:motivation>
          </val:proposedAct>
       </val:proposal>
    </soapenv:Body>
@@ -1018,7 +875,7 @@
          <val:proposedAct>
             <val:artist>bruce springsteen</val:artist>
             <val:event>beyond the horizon 2016</val:event>
-            <val:numberOfVotes>17</val:numberOfVotes>
+            <val:numberOfVotes>38</val:numberOfVotes>
             <val:motivation>He is the boss</val:motivation>
          </val:proposedAct>
       </val:proposal>
@@ -1030,7 +887,7 @@
          <val:proposedAct>
             <val:artist>bruno mars</val:artist>
             <val:event>beyond the horizon 2016</val:event>
-            <val:numberOfVotes>174</val:numberOfVotes>
+            <val:numberOfVotes>44</val:numberOfVotes>
             <val:motivation>appealing to various age groups</val:motivation>
          </val:proposedAct>
       </val:proposal>
@@ -1066,7 +923,7 @@
          <val:proposedAct>
             <val:artist>maroon 5</val:artist>
             <val:event>beyond the horizon 2016</val:event>
-            <val:numberOfVotes>67</val:numberOfVotes>
+            <val:numberOfVotes>23</val:numberOfVotes>
             <val:motivation>because the real mick jagger is too expensive</val:motivation>
          </val:proposedAct>
       </val:proposal>
@@ -1173,7 +1030,7 @@
          </val:proposedAct>
       </val:proposal>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendInProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Insight-Demo" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints/></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Insight-Demo" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints/></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://10.10.10.29:7001" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001</con:endpoint></con:endpoints><con:resource name="ArtistProposalAPI" path="/SendInArtistProposalAPI/ArtistProposalAPI/artistProposal"><con:settings/><con:parameters/><con:method name="ArtistProposalAPI" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=UTF-8</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal">art:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendInProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://10.10.10.29:7001" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001</con:endpoint></con:endpoints><con:resource name="ArtistProposalAPI" path="/SendInArtistProposalAPI/ArtistProposalAPI/artistProposal"><con:settings/><con:parameters/><con:method name="ArtistProposalAPI" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=UTF-8</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal">art:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
   "registeredActProposal" : {
     "artist" : "abba",
     "event" : "oow2016",
@@ -1267,9 +1124,9 @@
    <soapenv:Header/>
    <soapenv:Body>
       <neg:actProposalToEngage>
-         <neg:proposedActIdentifier>6</neg:proposedActIdentifier>
+         <neg:proposedActIdentifier>7</neg:proposedActIdentifier>
          <!--Optional:-->
-         <neg:maximumFee>60000</neg:maximumFee>
+         <neg:maximumFee>600000</neg:maximumFee>
       </neg:actProposalToEngage>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="Submit-Proposal-REST TestSuite"><con:description>TestSuite generated for REST Service [Submit-Proposal-REST]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="SubmitArtistProposalService TestCase" searchProperties="true"><con:description>TestCase generated for REST Resource [SubmitArtistProposalService] located at [/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal]</con:description><con:settings/><con:testStep type="restrequest" name="SimpleMinds-oow2016"><con:settings/><con:config service="Submit-Proposal-REST" resourcePath="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals" methodName="SubmitArtistProposalService" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="SimpleMinds-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "simple mind"
