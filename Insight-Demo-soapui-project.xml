@@ -930,19 +930,108 @@
          </val:proposedAct>
       </val:proposal>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendInProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="SendInArtistProposal (REST, SB)" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:description>Post JSON to SB which routes to SOA</con:description><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001</con:endpoint></con:endpoints><con:resource name="ArtistProposalAPI" path="/SendInArtistProposalAPI/ArtistProposalAPI/artistProposal"><con:settings/><con:parameters/><con:method name="ArtistProposalAPI" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=UTF-8</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal">art:Response</con:element></con:representation><con:request name="abba-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendInProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="SendInArtistProposal (REST, SB)" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:description>Post JSON to SB which routes to SOA</con:description><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001</con:endpoint></con:endpoints><con:resource name="ArtistProposalAPI" path="/SendInArtistProposalAPI/ArtistProposalAPI/artistProposal"><con:settings/><con:parameters/><con:method name="ArtistProposalAPI" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=UTF-8</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal">art:Response</con:element></con:representation>
+
+<con:request name="abba-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
   "registeredActProposal" : {
     "artist" : "abba",
     "event" : "oow2016",
     "numberOfVotes" : 140,
     "motivation" : "a reunion concert, would that not be great"
   }
-}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="adele-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request>
+
+
+<con:request name="adele-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
   "registeredActProposal" : {
     "artist" : "adele",
     "event" : "oow2016",
     "numberOfVotes" : 84,
     "motivation" : "have the 25 album performed live - how cool is that!"
+  }
+}</con:request>
+<con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request>
+<con:request name="shakira-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "shakira",
+    "event" : "oow2016",
+    "numberOfVotes" : 19,
+    "motivation" : "touch of Colombia"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="arianaGrande-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "ariana grande",
+    "event" : "oow2016",
+    "numberOfVotes" : 1,
+    "motivation" : "more for rather young women than for our crowd"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request>
+<con:request name="duplicate-abba-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "abba",
+    "event" : "oow2016",
+    "numberOfVotes" : 23,
+    "motivation" : "a reunion concert, would that not be great"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request>
+
+
+
+<con:request name="theaGilmore-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "thea gilmore",
+    "event" : "oow2016",
+    "numberOfVotes" : 6,
+    "motivation" : "fairly unknown gem"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="queen-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "queen",
+    "event" : "oow2016",
+    "numberOfVotes" : 69,
+    "motivation" : "yes, but not all of them"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="brunoMars-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "bruno mars",
+    "event" : "oow2016",
+    "numberOfVotes" : 32,
+    "motivation" : "my sons would like that"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="maroon5-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "maroon 5",
+    "event" : "oow2016",
+    "numberOfVotes" : 14,
+    "motivation" : "move like Jagger, but not pay for the real one"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="sting-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "sting",
+    "event" : "oow2016",
+    "numberOfVotes" : 85,
+    "motivation" : "and please bring that great female singer again"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="toriAmos-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "tori amos",
+    "event" : "oow2016",
+    "numberOfVotes" : 25,
+    "motivation" : "for my wife."
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="u2-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "u2",
+    "event" : "oow2016",
+    "numberOfVotes" : 125,
+    "motivation" : "very nice; challenging, budgetwise."
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="stromae-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "stromae",
+    "event" : "oow2016",
+    "numberOfVotes" : 75,
+    "motivation" : "original at the very least."
   }
 }</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="FindProposalsForEvent-ProposalsService (SOAP)" type="wsdl" bindingName="{http://oracle.com/sca/soapservice/ProcessArtistProposals/NegotiateAndEngage/ProposalsService}ProposalsServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService?WSDL"><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="ProposalsService" targetNamespace="http://oracle.com/sca/soapservice/ProcessArtistProposals/NegotiateAndEngage/ProposalsService" xmlns:tns="http://oracle.com/sca/soapservice/ProcessArtistProposals/NegotiateAndEngage/ProposalsService" xmlns:inp1="valencia.insight.demo/negotiation" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:documentation>
@@ -1031,9 +1120,9 @@
    <soapenv:Header/>
    <soapenv:Body>
       <neg:actProposalToEngage>
-         <neg:proposedActIdentifier>61</neg:proposedActIdentifier>
+         <neg:proposedActIdentifier>21</neg:proposedActIdentifier>
          <!--Optional:-->
-         <neg:maximumFee>600000</neg:maximumFee>
+         <neg:maximumFee>1600000</neg:maximumFee>
       </neg:actProposalToEngage>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="Submit-Proposal-REST TestSuite"><con:description>TestSuite generated for REST Service [Submit-Proposal-REST]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="SubmitArtistProposalService TestCase" searchProperties="true"><con:description>TestCase generated for REST Resource [SubmitArtistProposalService] located at [/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal]</con:description><con:settings/><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

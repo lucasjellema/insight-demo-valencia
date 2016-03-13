@@ -157,7 +157,7 @@
         </scope>
         <scope name="DeriveFeasibilityOfReaction">
           <sequence name="DeriveFeasibility">
-            <assign name="Assign">
+            <assign name="DefaultAssignNotFeasible">
               <copy>
                 <from>'N'</from>
                 <to>$feasibleYN</to>
@@ -165,7 +165,7 @@
             </assign>
             <if name="IfFeasible">
               <condition>$availableYN='Y' and (not($inputVariable.payload/ns3:maximumFee) or $proposedFee &lt;= $inputVariable.payload/ns3:maximumFee)</condition>
-              <assign name="Assign" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+              <assign name="AssignFeasble" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
                 <copy>
                   <from>'Y'</from>
                   <to>$feasibleYN</to>
@@ -185,7 +185,7 @@
                 <variable name="Invoke1_updateProposalStatus_InputVariable" messageType="ns1:args_in_msg"/>
               </variables>
               <sequence name="Sequence4">
-                <assign name="setInput">
+                <assign name="setInputEngaged">
                   <copy>
                     <from>$inputVariable.payload/ns3:proposedActIdentifier</from>
                     <to>$Invoke1_updateProposalStatus_InputVariable.InputParameters/ns2:P_ID</to>
@@ -195,7 +195,7 @@
                     <to>$Invoke1_updateProposalStatus_InputVariable.InputParameters/ns2:P_NEW_STATUS</to>
                   </copy>
                 </assign>
-                <invoke name="CallUpdateStatus" bpelx:invokeAsDetail="no" partnerLink="updateProposalStatus"
+                <invoke name="CallEngagedUpdateStatus" bpelx:invokeAsDetail="no" partnerLink="updateProposalStatus"
                         portType="ns1:updateProposalStatus_ptt" operation="updateProposalStatus"
                         inputVariable="Invoke1_updateProposalStatus_InputVariable"
                         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"/>
@@ -233,7 +233,7 @@
                   <variable name="Invoke1_updateProposalStatus_InputVariable" messageType="ns1:args_in_msg"/>
                 </variables>
                 <sequence name="Sequence4">
-                  <assign name="setInput">
+                  <assign name="setInputNotFeasible">
                     <copy>
                       <from>$inputVariable.payload/ns3:proposedActIdentifier</from>
                       <to>$Invoke1_updateProposalStatus_InputVariable.InputParameters/ns2:P_ID</to>
@@ -243,7 +243,7 @@
                       <to>$Invoke1_updateProposalStatus_InputVariable.InputParameters/ns2:P_NEW_STATUS</to>
                     </copy>
                   </assign>
-                  <invoke name="CallUpdateStatus" bpelx:invokeAsDetail="no" partnerLink="updateProposalStatus"
+                  <invoke name="CallNotFeasibleUpdateStatus" bpelx:invokeAsDetail="no" partnerLink="updateProposalStatus"
                           portType="ns1:updateProposalStatus_ptt" operation="updateProposalStatus"
                           inputVariable="Invoke1_updateProposalStatus_InputVariable"/>
                 </sequence>
