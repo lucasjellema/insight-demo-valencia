@@ -1,0 +1,14 @@
+<adapter-config name="fetchProposalDetails" adapter="db" wsdlLocation="../WSDLs/fetchProposalDetails.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="insight-demo-schema" location="eis/DB/SOADemo"/>
+  <endpoint-interaction portType="fetchProposalDetails_ptt" operation="fetchProposalDetailsSelect">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="fetchProposalDetails.ProposedActs"/>
+      <property name="QueryName" value="fetchProposalDetailsSelect"/>
+      <property name="MappingsMetaDataURL" value="fetchProposalDetails-or-mappings.xml"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

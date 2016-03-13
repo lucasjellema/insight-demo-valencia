@@ -1,0 +1,42 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Sun Mar 13 06:44:12 CET 2016
+  Author:  lucas_j
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="HandleClosureForProposal"
+               targetNamespace="http://xmlns.oracle.com/ProcessArtistProposals/ProposalClosure/HandleClosureForProposal"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/ProcessArtistProposals/ProposalClosure/HandleClosureForProposal"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/ProposalClosure/pollForClosedProposals"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <partnerLink name="pollForClosedProposals" partnerLinkType="ns1:pollForClosedProposals_plt"
+                 myRole="pollForClosedProposals_role"/>
+  </partnerLinks>
+  <variables>
+    <variable name="ReceiveClosedProposal_receive_InputVariable" messageType="ns1:ProposedActsCollection_msg"/>
+  </variables>
+  <sequence name="main">
+    <receive name="ReceiveClosedProposal" createInstance="yes" partnerLink="pollForClosedProposals"
+             portType="ns1:pollForClosedProposals_ptt" operation="receive"
+             variable="ReceiveClosedProposal_receive_InputVariable"/>
+    <empty name="DealWithClosedProposal"/>
+    <empty name="TweetAboutClosure"/>
+  </sequence>
+</process>

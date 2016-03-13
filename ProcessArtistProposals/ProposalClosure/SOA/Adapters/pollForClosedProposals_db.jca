@@ -1,0 +1,22 @@
+<adapter-config name="pollForClosedProposals" adapter="db" wsdlLocation="../WSDLs/pollForClosedProposals.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="insight-demo-schema" location="eis/DB/SOADemo"/>
+  <endpoint-activation portType="pollForClosedProposals_ptt" operation="receive">
+    <activation-spec className="oracle.tip.adapter.db.DBActivationSpec">
+      <property name="DescriptorName" value="pollForClosedProposals.ProposedActs"/>
+      <property name="QueryName" value="pollForClosedProposalsSelect"/>
+      <property name="MappingsMetaDataURL" value="pollForClosedProposals-or-mappings.xml"/>
+      <property name="PollingStrategy" value="LogicalDeletePollingStrategy"/>
+      <property name="MarkReadColumn" value="STATUS"/>
+      <property name="MarkReadValue" value="final"/>
+      <property name="MarkReservedValue" value="R${weblogic.Name-2}-${IP-2}-closed"/>
+      <property name="MarkUnreadValue" value="closed"/>
+      <property name="PollingInterval" value="5"/>
+      <property name="MaxRaiseSize" value="1"/>
+      <property name="MaxTransactionSize" value="1"/>
+      <property name="NumberOfThreads" value="1"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+    </activation-spec>
+  </endpoint-activation>
+
+</adapter-config>

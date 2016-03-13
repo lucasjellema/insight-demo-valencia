@@ -1028,7 +1028,7 @@
    <soapenv:Body>
       <val:proposal>
          <val:proposedAct>
-            <val:artist>burno mars</val:artist>
+            <val:artist>bruno mars</val:artist>
             <val:event>beyond the horizon 2016</val:event>
             <val:numberOfVotes>174</val:numberOfVotes>
             <val:motivation>appealing to various age groups</val:motivation>
@@ -1173,14 +1173,106 @@
          </val:proposedAct>
       </val:proposal>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendInProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Insight-Demo" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints/></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Insight-Demo" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints/></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://10.10.10.29:7001" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001</con:endpoint></con:endpoints><con:resource name="ArtistProposalAPI" path="/SendInArtistProposalAPI/ArtistProposalAPI/artistProposal"><con:settings/><con:parameters/><con:method name="ArtistProposalAPI" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=UTF-8</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendInProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Insight-Demo" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints/></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Insight-Demo" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints/></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://10.10.10.29:7001" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001</con:endpoint></con:endpoints><con:resource name="ArtistProposalAPI" path="/SendInArtistProposalAPI/ArtistProposalAPI/artistProposal"><con:settings/><con:parameters/><con:method name="ArtistProposalAPI" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=UTF-8</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal">art:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
   "registeredActProposal" : {
     "artist" : "abba",
     "event" : "oow2016",
     "numberOfVotes" : 140,
     "motivation" : "childhood memory"
   }
-}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite name="Submit-Proposal-REST TestSuite"><con:description>TestSuite generated for REST Service [Submit-Proposal-REST]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="SubmitArtistProposalService TestCase" searchProperties="true"><con:description>TestCase generated for REST Resource [SubmitArtistProposalService] located at [/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal]</con:description><con:settings/><con:testStep type="restrequest" name="SimpleMinds-oow2016"><con:settings/><con:config service="Submit-Proposal-REST" resourcePath="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals" methodName="SubmitArtistProposalService" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="SimpleMinds-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "simple mind"
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="FindProposalsForEvent-ProposalsService (SOAP)" type="wsdl" bindingName="{http://oracle.com/sca/soapservice/ProcessArtistProposals/NegotiateAndEngage/ProposalsService}ProposalsServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService?WSDL"><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="ProposalsService" targetNamespace="http://oracle.com/sca/soapservice/ProcessArtistProposals/NegotiateAndEngage/ProposalsService" xmlns:tns="http://oracle.com/sca/soapservice/ProcessArtistProposals/NegotiateAndEngage/ProposalsService" xmlns:inp1="valencia.insight.demo/negotiation" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage!1.0/WSDLs/ProposalsService.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="valencia.insight.demo/negotiation" schemaLocation="http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService?XSD=../Schemas/NegotiationService.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="requestMessage">
+    <wsdl:part name="part1" element="inp1:eventIdentifier"/>
+  </wsdl:message>
+  <wsdl:message name="replyMessage">
+    <wsdl:part name="part1" element="inp1:actProposalList"/>
+  </wsdl:message>
+  <wsdl:portType name="ProposalsService">
+    <wsdl:operation name="findProposalsForEvent">
+      <wsdl:input message="tns:requestMessage"/>
+      <wsdl:output message="tns:replyMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProposalsServiceBinding" type="tns:ProposalsService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findProposalsForEvent">
+      <soap:operation style="document" soapAction="findProposalsForEvent"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProposalsService">
+    <wsdl:port name="ProposalsService_pt" binding="tns:ProposalsServiceBinding">
+      <soap:address location="http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService?XSD=../Schemas/NegotiationService.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="valencia.insight.demo/negotiation" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:neg="valencia.insight.demo/negotiation">
+  <xsd:element name="actProposalToEngage">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="proposedActIdentifier" type="xsd:integer"/>
+        <xsd:element name="maximumFee" type="xsd:integer" minOccurs="0"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="eventIdentifier" type="neg:eventIdentifierType"/>
+  <xsd:element name="actProposalList" type="neg:actProposalListType"/>
+  <xsd:complexType name="eventIdentifierType">
+    <xsd:sequence>
+      <xsd:element name="event" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="actProposalListType">
+    <xsd:sequence>
+      <xsd:element name="actProposal" type="neg:actProposalType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="actProposalType">
+    <xsd:sequence>
+      <xsd:element name="proposedActIdentifier" type="xsd:integer"/>
+      <xsd:element name="artist" type="xsd:string"/>
+      <xsd:element name="event" type="xsd:string"/>
+      <xsd:element name="numberOfVotes" type="xsd:integer"/>
+      <xsd:element name="motivation" type="xsd:string"/>
+      <xsd:element name="status" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="findProposalsForEvent" name="findProposalsForEvent" bindingOperationName="findProposalsForEvent" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="oow2016-RetrieveProposalsForEvent"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:neg="valencia.insight.demo/negotiation">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <neg:eventIdentifier>
+         <neg:event>oow2016</neg:event>
+      </neg:eventIdentifier>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="findProposalsForEvent"/><con:wsrmConfig version="1.2"/></con:call><con:call name="beyond the horizon 2016-RetrieveProposalsForEvent"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:neg="valencia.insight.demo/negotiation">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <neg:eventIdentifier>
+         <neg:event>beyond the horizon 2016</neg:event>
+      </neg:eventIdentifier>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="findProposalsForEvent"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="200508" name="EngageArtistForEvent (SOAP)" type="wsdl" bindingName="{valencia.insight.demo/negotiatior}NegotiatorBinding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/negotiator_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/negotiator_ep</con:endpoint></con:endpoints><con:operation isOneWay="false" action="process" name="process" bindingOperationName="process" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="EngageArtistProposal" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/negotiator_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:neg="valencia.insight.demo/negotiation">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <neg:actProposalToEngage>
+         <neg:proposedActIdentifier>6</neg:proposedActIdentifier>
+         <!--Optional:-->
+         <neg:maximumFee>60000</neg:maximumFee>
+      </neg:actProposalToEngage>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="Submit-Proposal-REST TestSuite"><con:description>TestSuite generated for REST Service [Submit-Proposal-REST]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="SubmitArtistProposalService TestCase" searchProperties="true"><con:description>TestCase generated for REST Resource [SubmitArtistProposalService] located at [/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal]</con:description><con:settings/><con:testStep type="restrequest" name="SimpleMinds-oow2016"><con:settings/><con:config service="Submit-Proposal-REST" resourcePath="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals" methodName="SubmitArtistProposalService" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="SimpleMinds-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "simple mind"
                  , "event" : "Oracle OpenWorld 2016"
  , "numberOfVotes" : 1
  , "motivation" : "'For old times sake!"

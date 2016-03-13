@@ -1,0 +1,134 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Sun Mar 13 06:56:33 CET 2016
+  Author:  lucas_j
+  Type: BPEL 2.0 Process
+  Purpose: Asynchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="AgentNegotiator"
+         targetNamespace="http://xmlns.oracle.com/AgentNegotiator/AgentNegotiator/AgentNegotiator"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:client="http://xmlns.oracle.com/AgentNegotiator/AgentNegotiator/AgentNegotiator"
+         xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns1="valencia.insight.demo/agent-negotiator">
+  <import ui:processWSDL="true" namespace="http://xmlns.oracle.com/AgentNegotiator/AgentNegotiator/AgentNegotiator"
+          location="../WSDLs/AgentNegotiator.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+
+ <import location="java.util.Random"
+     importType="http://schemas.oracle.com/bpel/extension/java"/>
+  <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="AgentNegotiatorService" partnerLinkType="client:AgentNegotiator" myRole="AgentNegotiatorProvider"
+                 partnerRole="AgentNegotiatorRequester"/>
+  </partnerLinks>
+  <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        VARIABLES                                                        
+        List of messages and XML documents used within this BPEL process 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:AgentNegotiatorRequestMessage"/>
+    <!-- Reference to the message that will be sent back to the requester during callback -->
+    <variable name="outputVariable" messageType="client:AgentNegotiatorResponseMessage"/>
+    <variable name="waitingTime" type="xsd:int"/>
+    <variable name="fee" type="xsd:int"/>
+    <variable name="availableYN" type="xsd:string"/>
+  </variables>
+  <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       ORCHESTRATION LOGIC                                               
+       Set of activities coordinating the flow of messages across the    
+       services integrated within this business process                  
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+  <sequence name="main">
+    <!-- Receive input from requestor. (Note: This maps to operation defined in AgentNegotiator.wsdl) -->
+    <receive name="receiveInput" partnerLink="AgentNegotiatorService" portType="client:AgentNegotiator"
+             operation="process" variable="inputVariable" createInstance="yes"/>
+    <scope name="DetermineWaitingTimeAvailableAndFee">
+      <sequence name="Sequence1">
+        <extensionActivity>
+          <bpelx:exec name="DetermineWaitingTime" language="java">
+            <![CDATA[try {  
+        Random random = new java.util.Random();  
+        int waitingTime = random.nextInt(15);  
+        setVariableData("waitingTime", 5+waitingTime);         
+}  
+// end Generate random number from java  
+catch(Exception e){}]]>
+          </bpelx:exec>
+        </extensionActivity>
+        <extensionActivity xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+      <bpelx:exec name="DetermineFee" language="java" xmlns:bpelx="http://schemas.oracle.com/bpel/extension">
+         
+      <![CDATA[try {  
+        Random random = new java.util.Random();  
+        int fee = random.nextInt(250000);  
+        setVariableData("fee", fee);         
+}  
+// end Generate random number from java  
+catch(Exception e){}]]></bpelx:exec>
+   </extensionActivity>
+        <extensionActivity xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+      <bpelx:exec name="DetermineAvailableYN" language="java" xmlns:bpelx="http://schemas.oracle.com/bpel/extension">
+         
+      <![CDATA[try {  
+        Random random = new java.util.Random();  
+        int nextInt= random.nextInt(10);  
+        String availableYN = "N";  
+        if (nextInt > 6) {availableYN = "Y"; } 
+        setVariableData("availableYN", availableYN);         
+}  
+// end Generate random number from java  
+catch(Exception e){}]]></bpelx:exec>
+   </extensionActivity>
+      </sequence>
+    </scope>
+    <assign name="AssignResponse">
+      <copy>
+        <from>$availableYN</from>
+        <to>$outputVariable.payload/ns1:availableYN</to>
+      </copy>
+      <copy>
+        <from>$fee</from>
+        <to>$outputVariable.payload/ns1:fee</to>
+      </copy>
+    </assign>
+    <wait name="WaitForFashionableTime">
+      <for>concat('PT',$waitingTime,'S')</for>
+    </wait>
+    <!-- 
+          Asynchronous callback to the requester. (Note: the callback location and correlation id is transparently handled using WS-addressing.)
+        -->
+    <invoke name="callbackClient" partnerLink="AgentNegotiatorService" portType="client:AgentNegotiatorCallback"
+            operation="processResponse" inputVariable="outputVariable"/>
+  </sequence>
+</process>

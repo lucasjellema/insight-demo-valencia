@@ -1,0 +1,32 @@
+<wsdl:definitions
+     name="fetchProposalDetails"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/fetchProposalDetails"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/fetchProposalDetails"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/fetchProposalDetails"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="fetchProposalDetails_plt" >
+    <plt:role name="fetchProposalDetails_role" >
+      <plt:portType name="tns:fetchProposalDetails_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/fetchProposalDetails" schemaLocation="../Schemas/fetchProposalDetails_table.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="fetchProposalDetailsSelect_inputParameters">
+        <wsdl:part name="fetchProposalDetailsSelect_inputParameters" element="top:fetchProposalDetailsSelect_proposalIdentifierInputParameters"/>
+    </wsdl:message>
+    <wsdl:message name="ProposedActsCollection_msg">
+        <wsdl:part name="ProposedActsCollection" element="top:ProposedActsCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="fetchProposalDetails_ptt">
+        <wsdl:operation name="fetchProposalDetailsSelect">
+            <wsdl:input message="tns:fetchProposalDetailsSelect_inputParameters"/>
+            <wsdl:output message="tns:ProposedActsCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

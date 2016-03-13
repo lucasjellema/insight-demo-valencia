@@ -1,0 +1,14 @@
+<adapter-config name="retrieveProposalsForEvent" adapter="db" wsdlLocation="../WSDLs/retrieveProposalsForEvent.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="insight-demo-schema" location="eis/DB/SOADemo"/>
+  <endpoint-interaction portType="retrieveProposalsForEvent_ptt" operation="retrieveProposalsForEventSelect">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="retrieveProposalsForEvent.ProposedActs"/>
+      <property name="QueryName" value="retrieveProposalsForEventSelect"/>
+      <property name="MappingsMetaDataURL" value="retrieveProposalsForEvent-or-mappings.xml"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>
