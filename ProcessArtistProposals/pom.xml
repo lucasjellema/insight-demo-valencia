@@ -9,5 +9,7 @@
         <!-- Add project modules -->
     	<module>EvaluateArtistProposal</module>
     	<module>JudgeArtistProposals</module>
+    	<module>NegotiateAndEngage</module>
+    	<module>ProposalClosure</module>
     </modules>
 </project>

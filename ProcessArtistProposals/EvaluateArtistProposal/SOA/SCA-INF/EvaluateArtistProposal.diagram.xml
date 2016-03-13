@@ -15,11 +15,11 @@
         </dgm:operations>
     </dgm:gService>
     <dgm:gReference name="verifyExistinceOfProposal">
-        <dgm:body borderWidth="2" arcRad="20" X="982" Y="26" width="136" height="84">
+        <dgm:body borderWidth="2" arcRad="20" X="814" Y="26" width="136" height="84">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="972" Y="19" width="156" height="98">
+        <dgm:shadow arcRad="20" X="804" Y="19" width="156" height="98">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="verifyExistinceOfProposal" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/verifyExistinceOfProposal#wsdl.interface(verifyExistinceOfProposal_ptt)"/>
@@ -29,11 +29,11 @@
         </dgm:operations>
     </dgm:gReference>
     <dgm:gReference name="updateArtistProposal">
-        <dgm:body borderWidth="2" arcRad="20" X="982" Y="144" width="136" height="84">
+        <dgm:body borderWidth="2" arcRad="20" X="814" Y="144" width="136" height="84">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="972" Y="137" width="156" height="98">
+        <dgm:shadow arcRad="20" X="804" Y="137" width="156" height="98">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="updateArtistProposal" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/updateArtistProposal#wsdl.interface(updateArtistProposal_ptt)"/>
@@ -43,11 +43,11 @@
         </dgm:operations>
     </dgm:gReference>
     <dgm:gReference name="updateProposalStatus">
-        <dgm:body borderWidth="2" arcRad="20" X="982" Y="291" width="136" height="84">
+        <dgm:body borderWidth="2" arcRad="20" X="814" Y="291" width="136" height="84">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="972" Y="284" width="156" height="98">
+        <dgm:shadow arcRad="20" X="804" Y="284" width="156" height="98">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="updateProposalStatus" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/updateProposalStatus#wsdl.interface(updateProposalStatus_ptt)"/>
@@ -57,12 +57,12 @@
         </dgm:operations>
     </dgm:gReference>
     <dgm:gComponent name="EvaluateArtistProposal">
-        <dgm:body borderWidth="2" arcRad="20" X="346" Y="132" width="130" height="136">
+        <dgm:body borderWidth="2" arcRad="20" X="290" Y="132" width="130" height="136">
             <dgm:borderColor r="69" g="113" b="140"/>
             <dgm:lightBgColor r="166" g="208" b="230"/>
             <dgm:darkBgColor r="99" g="162" b="201"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="336" Y="125" width="150" height="152">
+        <dgm:shadow arcRad="20" X="280" Y="125" width="150" height="152">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="processNewArtistProposals" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/processNewArtistProposals#wsdl.interface(processNewArtistProposals_ptt)"/>
@@ -73,45 +73,45 @@
         <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
     </dgm:gComponent>
     <dgm:gComponent name="ArtistProposalRules">
-        <dgm:body borderWidth="2" arcRad="20" X="664" Y="182" width="130" height="61">
+        <dgm:body borderWidth="2" arcRad="20" X="552" Y="182" width="130" height="61">
             <dgm:borderColor r="178" g="138" b="53"/>
             <dgm:lightBgColor r="255" g="226" b="142"/>
             <dgm:darkBgColor r="255" g="198" b="77"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="654" Y="175" width="150" height="77">
+        <dgm:shadow arcRad="20" X="542" Y="175" width="150" height="77">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="ArtistProposalRules_DecisionService_1" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/ArtistProposalRules/ArtistProposalRules_DecisionService_1#wsdl.interface(IDecisionService)"/>
         <dgm:nodeIcon URI="/oracle/tip/tools/ide/rules/plugins/resources/images/soa/decision_20x20.png" X="10" Y="4" width="20" height="20"/>
     </dgm:gComponent>
     <dgm:gWireLink source="processNewArtistProposals" target="EvaluateArtistProposal/processNewArtistProposals" width="2">
-        <dgm:gSegment X1="168" Y1="157" X2="336" Y2="157"/>
+        <dgm:gSegment X1="168" Y1="157" X2="280" Y2="157"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="EvaluateArtistProposal/verifyExistinceOfProposal" target="verifyExistinceOfProposal" width="2">
-        <dgm:gSegment X1="486" Y1="157" X2="510" Y2="157"/>
-        <dgm:gSegment X1="510" Y1="157" X2="510" Y2="36"/>
-        <dgm:gSegment X1="510" Y1="36" X2="972" Y2="36"/>
+        <dgm:gSegment X1="430" Y1="157" X2="454" Y2="157"/>
+        <dgm:gSegment X1="454" Y1="157" X2="454" Y2="36"/>
+        <dgm:gSegment X1="454" Y1="36" X2="804" Y2="36"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="EvaluateArtistProposal/updateArtistProposal" target="updateArtistProposal" width="2">
-        <dgm:gSegment X1="486" Y1="182" X2="525" Y2="182"/>
-        <dgm:gSegment X1="525" Y1="182" X2="525" Y2="154"/>
-        <dgm:gSegment X1="525" Y1="154" X2="972" Y2="154"/>
+        <dgm:gSegment X1="430" Y1="182" X2="469" Y2="182"/>
+        <dgm:gSegment X1="469" Y1="182" X2="469" Y2="154"/>
+        <dgm:gSegment X1="469" Y1="154" X2="804" Y2="154"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="EvaluateArtistProposal/ArtistProposalRules.ArtistProposalRules_DecisionService_1" target="ArtistProposalRules/ArtistProposalRules_DecisionService_1" width="2">
-        <dgm:gSegment X1="486" Y1="207" X2="654" Y2="207"/>
+        <dgm:gSegment X1="430" Y1="207" X2="542" Y2="207"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="EvaluateArtistProposal/updateProposalStatus" target="updateProposalStatus" width="2">
-        <dgm:gSegment X1="486" Y1="232" X2="510" Y2="232"/>
-        <dgm:gSegment X1="510" Y1="232" X2="510" Y2="301"/>
-        <dgm:gSegment X1="510" Y1="301" X2="972" Y2="301"/>
+        <dgm:gSegment X1="430" Y1="232" X2="454" Y2="232"/>
+        <dgm:gSegment X1="454" Y1="232" X2="454" Y2="301"/>
+        <dgm:gSegment X1="454" Y1="301" X2="804" Y2="301"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>

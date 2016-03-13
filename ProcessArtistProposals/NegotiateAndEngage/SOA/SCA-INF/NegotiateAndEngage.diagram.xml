@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm">
+    <dgm:gService name="negotiator_ep">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="327" width="137" height="96">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="320" width="156" height="110">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="negotiator_ep" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="valencia.insight.demo/negotiatior#wsdl.interface(Negotiator)" callbackInterface="valencia.insight.demo/negotiatior#wsdl.interface(NegotiatorCallback)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>process</dgm:item>
+            <dgm:item>processResponse</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gService name="ProposalsService">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="41" width="137" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="34" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="ProposalsService" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://oracle.com/sca/soapservice/ProcessArtistProposals/NegotiateAndEngage/ProposalsService#wsdl.interface(ProposalsService)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>findProposalsForEvent</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gReference name="updateProposalStatus">
+        <dgm:body borderWidth="2" arcRad="20" X="829" Y="275" width="136" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="819" Y="268" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="updateProposalStatus" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/updateProposalStatus#wsdl.interface(updateProposalStatus_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/db_adapter_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>updateProposalStatus</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gReference name="fetchProposalDetails">
+        <dgm:body borderWidth="2" arcRad="20" X="829" Y="157" width="136" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="819" Y="150" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="fetchProposalDetails" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/fetchProposalDetails#wsdl.interface(fetchProposalDetails_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/db_adapter_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>fetchProposalDetailsSelect</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gReference name="ArtistAgent">
+        <dgm:body borderWidth="2" arcRad="20" X="829" Y="393" width="136" height="96">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="819" Y="386" width="156" height="110">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="ArtistAgent" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/AgentNegotiator/AgentNegotiator/AgentNegotiator#wsdl.interface(AgentNegotiator)" callbackInterface="http://xmlns.oracle.com/AgentNegotiator/AgentNegotiator/AgentNegotiator#wsdl.interface(AgentNegotiatorCallback)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>process</dgm:item>
+            <dgm:item>processResponse</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gReference name="retrieveProposalsForEvent">
+        <dgm:body borderWidth="2" arcRad="20" X="829" Y="41" width="136" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="819" Y="34" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="retrieveProposalsForEvent" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/retrieveProposalsForEvent#wsdl.interface(retrieveProposalsForEvent_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/db_adapter_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>retrieveProposalsForEventSelect</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gReference name="closeOtherProposals">
+        <dgm:body borderWidth="2" arcRad="20" X="829" Y="523" width="136" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="819" Y="516" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="closeOtherProposals" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/closeOtherProposals#wsdl.interface(closeOtherProposals_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/db_adapter_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>closeOtherProposals</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gComponent name="Negotiator">
+        <dgm:body borderWidth="2" arcRad="20" X="512" Y="312" width="130" height="136">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="502" Y="305" width="150" height="152">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="negotiator" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="valencia.insight.demo/negotiatior#wsdl.interface(Negotiator)" callbackInterface="valencia.insight.demo/negotiatior#wsdl.interface(NegotiatorCallback)"/>
+        <dgm:outputPort name="fetchProposalDetails" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/fetchProposalDetails#wsdl.interface(fetchProposalDetails_ptt)"/>
+        <dgm:outputPort name="updateProposalStatus" X="120" Y="40" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/updateProposalStatus#wsdl.interface(updateProposalStatus_ptt)"/>
+        <dgm:outputPort name="ArtistAgent" X="120" Y="65" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/AgentNegotiator/AgentNegotiator/AgentNegotiator#wsdl.interface(AgentNegotiator)" callbackInterface="http://xmlns.oracle.com/AgentNegotiator/AgentNegotiator/AgentNegotiator#wsdl.interface(AgentNegotiatorCallback)"/>
+        <dgm:outputPort name="closeOtherProposals" X="120" Y="90" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/closeOtherProposals#wsdl.interface(closeOtherProposals_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="ProposalsServiceMediator">
+        <dgm:body borderWidth="2" arcRad="20" X="512" Y="26" width="130" height="61">
+            <dgm:borderColor r="128" g="92" b="148"/>
+            <dgm:lightBgColor r="208" g="169" b="227"/>
+            <dgm:darkBgColor r="183" g="132" b="212"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="502" Y="19" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="ProposalsServiceMediator" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://oracle.com/sca/soapservice/ProcessArtistProposals/NegotiateAndEngage/ProposalsService#wsdl.interface(ProposalsService)"/>
+        <dgm:outputPort name="retrieveProposalsForEvent" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/retrieveProposalsForEvent#wsdl.interface(retrieveProposalsForEvent_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/mediator/resource/image/mediator_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gWireLink source="negotiator_ep" target="Negotiator/negotiator" width="2">
+        <dgm:gSegment X1="168" Y1="337" X2="502" Y2="337"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="Negotiator/fetchProposalDetails" target="fetchProposalDetails" width="2">
+        <dgm:gSegment X1="652" Y1="337" X2="676" Y2="337"/>
+        <dgm:gSegment X1="676" Y1="337" X2="676" Y2="167"/>
+        <dgm:gSegment X1="676" Y1="167" X2="819" Y2="167"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="Negotiator/updateProposalStatus" target="updateProposalStatus" width="2">
+        <dgm:gSegment X1="652" Y1="362" X2="691" Y2="362"/>
+        <dgm:gSegment X1="691" Y1="362" X2="691" Y2="285"/>
+        <dgm:gSegment X1="691" Y1="285" X2="819" Y2="285"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="Negotiator/ArtistAgent" target="ArtistAgent" width="2">
+        <dgm:gSegment X1="652" Y1="387" X2="691" Y2="387"/>
+        <dgm:gSegment X1="691" Y1="387" X2="691" Y2="403"/>
+        <dgm:gSegment X1="691" Y1="403" X2="819" Y2="403"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="ProposalsService" target="ProposalsServiceMediator/ProposalsServiceMediator" width="2">
+        <dgm:gSegment X1="168" Y1="51" X2="502" Y2="51"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="ProposalsServiceMediator/retrieveProposalsForEvent" target="retrieveProposalsForEvent" width="2">
+        <dgm:gSegment X1="652" Y1="51" X2="819" Y2="51"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="Negotiator/closeOtherProposals" target="closeOtherProposals" width="2">
+        <dgm:gSegment X1="652" Y1="412" X2="676" Y2="412"/>
+        <dgm:gSegment X1="676" Y1="412" X2="676" Y2="533"/>
+        <dgm:gSegment X1="676" Y1="533" X2="819" Y2="533"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+</dgm:gDiagram>

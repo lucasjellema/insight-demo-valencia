@@ -27,6 +27,8 @@
       <hash><url n="URL" path="ArtistProposalEvaluationForm/ArtistProposalEvaluationForm.jpr"/></hash>
       <hash><url n="URL" path="EvaluateArtistProposal/EvaluateArtistProposal.jpr"/></hash>
       <hash><url n="URL" path="JudgeArtistProposals/JudgeArtistProposals.jpr"/></hash>
+      <hash><url n="URL" path="NegotiateAndEngage/NegotiateAndEngage.jpr"/></hash>
+      <hash><url n="URL" path="ProposalClosure/ProposalClosure.jpr"/></hash>
    </list>
    <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
       <hash n="profileDefinitions">

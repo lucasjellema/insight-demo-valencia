@@ -1,0 +1,34 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:neg="valencia.insight.demo/negotiation"
+     targetNamespace="valencia.insight.demo/negotiation" elementFormDefault="qualified">
+    <xsd:element name="actProposalToEngage">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="proposedActIdentifier" type="xsd:integer"/>
+                <xsd:element name="maximumFee" type="xsd:integer" minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="eventIdentifier" type="neg:eventIdentifierType"/>
+    <xsd:element name="actProposalList" type="neg:actProposalListType"/>
+    <xsd:complexType name="eventIdentifierType">
+        <xsd:sequence>
+            <xsd:element name="event" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="actProposalListType">
+        <xsd:sequence>
+            <xsd:element name="actProposal" type="neg:actProposalType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="actProposalType">
+        <xsd:sequence>
+            <xsd:element name="proposedActIdentifier" type="xsd:integer"/>
+            <xsd:element name="artist" type="xsd:string"/>
+            <xsd:element name="event" type="xsd:string"/>
+            <xsd:element name="numberOfVotes" type="xsd:integer"/>
+            <xsd:element name="motivation" type="xsd:string"/>
+            <xsd:element name="status" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

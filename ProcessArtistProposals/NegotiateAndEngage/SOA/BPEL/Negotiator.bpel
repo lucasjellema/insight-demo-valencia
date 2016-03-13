@@ -1,0 +1,262 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Sun Mar 13 06:26:46 CET 2016
+  Author:  lucas_j
+  Type: BPEL 2.0 Process
+  Purpose: Asynchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="Negotiator" targetNamespace="valencia.insight.demo/negotiatior"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:client="valencia.insight.demo/negotiatior" xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer" xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/updateProposalStatus"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/sp/updateProposalStatus"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="valencia.insight.demo/negotiation"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns5="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/fetchProposalDetails"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns6="valencia.insight.demo/agent-negotiator"
+         xmlns:ns7="http://xmlns.oracle.com/pcbpel/adapter/db/top/fetchProposalDetails"
+         xmlns:ns4="http://xmlns.oracle.com/AgentNegotiator/AgentNegotiator/AgentNegotiator"
+         xmlns:ns8="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/NegotiateAndEngage/closeOtherProposals"
+         xmlns:ns9="http://xmlns.oracle.com/pcbpel/adapter/db/sp/closeOtherProposals">
+  <import ui:processWSDL="true" namespace="valencia.insight.demo/negotiatior" location="../WSDLs/Negotiator.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/"/>
+  <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="negotiator" partnerLinkType="client:Negotiator" myRole="NegotiatorProvider"
+                 partnerRole="NegotiatorRequester"/>
+    <partnerLink name="fetchProposalDetails" partnerLinkType="ns5:fetchProposalDetails_plt"
+                 partnerRole="fetchProposalDetails_role"/>
+    <partnerLink name="updateProposalStatus" partnerLinkType="ns1:updateProposalStatus_plt"
+                 partnerRole="updateProposalStatus_role"/>
+    <partnerLink name="ArtistAgent" partnerLinkType="ns4:AgentNegotiator" partnerRole="AgentNegotiatorProvider"
+                 myRole="AgentNegotiatorRequester"/>
+    <partnerLink name="closeOtherProposals" partnerLinkType="ns8:closeOtherProposals_plt"
+                 partnerRole="closeOtherProposals_role"/>
+  </partnerLinks>
+  <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        VARIABLES                                                        
+        List of messages and XML documents used within this BPEL process 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:NegotiatorRequestMessage"/>
+    <!-- Reference to the message that will be sent back to the requester during callback -->
+    <variable name="outputVariable" messageType="client:NegotiatorResponseMessage"/>
+  </variables>
+  <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       ORCHESTRATION LOGIC                                               
+       Set of activities coordinating the flow of messages across the    
+       services integrated within this business process                  
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+  <sequence name="main">
+    <!-- Receive input from requestor. (Note: This maps to operation defined in Negotiator.wsdl) -->
+    <receive name="receiveInput" partnerLink="negotiator" portType="client:Negotiator" operation="process"
+             variable="inputVariable" createInstance="yes"/>
+    <scope name="Negotiate">
+      <variables>
+        <variable name="artist" type="xsd:string"/>
+        <variable name="event" type="xsd:string"/>
+        <variable name="proposedFee" type="xsd:int"/>
+        <variable name="availableYN" type="xsd:string"/>
+        <variable name="feasibleYN" type="xsd:string"/>
+      </variables>
+      <sequence name="RetrieveProposalDetails">
+        <scope name="RetrieveProposalDetails">
+          <variables>
+            <variable name="Invoke1_fetchProposalDetailsSelect_InputVariable"
+                      messageType="ns5:fetchProposalDetailsSelect_inputParameters"/>
+            <variable name="Invoke1_fetchProposalDetailsSelect_OutputVariable"
+                      messageType="ns5:ProposedActsCollection_msg"/>
+          </variables>
+          <sequence name="Sequence8">
+            <assign name="Assign1">
+              <copy>
+                <from>$inputVariable.payload/ns3:proposedActIdentifier</from>
+                <to>$Invoke1_fetchProposalDetailsSelect_InputVariable.fetchProposalDetailsSelect_inputParameters/ns7:proposalIdentifier</to>
+              </copy>
+            </assign>
+            <invoke name="InvokeFetch" bpelx:invokeAsDetail="no" partnerLink="fetchProposalDetails"
+                    portType="ns5:fetchProposalDetails_ptt" operation="fetchProposalDetailsSelect"
+                    inputVariable="Invoke1_fetchProposalDetailsSelect_InputVariable"
+                    outputVariable="Invoke1_fetchProposalDetailsSelect_OutputVariable"/>
+            <assign name="Assign2">
+              <copy>
+                <from>$Invoke1_fetchProposalDetailsSelect_OutputVariable.ProposedActsCollection/ns7:ProposedActs/ns7:event</from>
+                <to>$event</to>
+              </copy>
+              <copy>
+                <from>$Invoke1_fetchProposalDetailsSelect_OutputVariable.ProposedActsCollection/ns7:ProposedActs/ns7:name</from>
+                <to>$artist</to>
+              </copy>
+            </assign>
+          </sequence>
+        </scope>
+        <scope name="AgentInteraction">
+          <variables>
+            <variable name="InvokeAgent_process_InputVariable" messageType="ns4:AgentNegotiatorRequestMessage"/>
+            <variable name="ReceiveReactionAndCounterOffer_processResponse_InputVariable"
+                      messageType="ns4:AgentNegotiatorResponseMessage"/>
+          </variables>
+          <sequence name="Sequence9">
+            <assign name="Assign3">
+              <copy>
+                <from>$artist</from>
+                <to>$InvokeAgent_process_InputVariable.payload/ns6:artist</to>
+              </copy>
+              <copy>
+                <from>$event</from>
+                <to>$InvokeAgent_process_InputVariable.payload/ns6:event</to>
+              </copy>
+            </assign>
+            <invoke name="InvokeAgent" bpelx:invokeAsDetail="no" partnerLink="ArtistAgent"
+                    portType="ns4:AgentNegotiator" operation="process"
+                    inputVariable="InvokeAgent_process_InputVariable"/>
+            <receive name="ReceiveReactionAndCounterOffer" partnerLink="ArtistAgent"
+                     portType="ns4:AgentNegotiatorCallback" operation="processResponse"
+                     variable="ReceiveReactionAndCounterOffer_processResponse_InputVariable"/>
+            <assign name="Assign4">
+              <copy>
+                <from>$ReceiveReactionAndCounterOffer_processResponse_InputVariable.payload/ns6:availableYN</from>
+                <to>$availableYN</to>
+              </copy>
+              <copy>
+                <from>$ReceiveReactionAndCounterOffer_processResponse_InputVariable.payload/ns6:fee</from>
+                <to>$proposedFee</to>
+              </copy>
+            </assign>
+          </sequence>
+        </scope>
+        <scope name="DeriveFeasibilityOfReaction">
+          <sequence name="DeriveFeasibility">
+            <assign name="Assign">
+              <copy>
+                <from>'N'</from>
+                <to>$feasibleYN</to>
+              </copy>
+            </assign>
+            <if name="IfFeasible">
+              <condition>$availableYN='Y' and (not($inputVariable.payload/ns3:maximumFee) or $proposedFee &lt;= $inputVariable.payload/ns3:maximumFee)</condition>
+              <assign name="Assign" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                <copy>
+                  <from>'Y'</from>
+                  <to>$feasibleYN</to>
+                </copy>
+              </assign>
+              <else>
+                <empty name="Empty1"/>
+              </else>
+            </if>
+          </sequence>
+        </scope>
+        <if name="IfFeasible">
+          <condition>$feasibleYN='Y'</condition>
+          <sequence name="Engage">
+            <scope name="EngagedStatusProposal" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+              <variables>
+                <variable name="Invoke1_updateProposalStatus_InputVariable" messageType="ns1:args_in_msg"/>
+              </variables>
+              <sequence name="Sequence4">
+                <assign name="setInput">
+                  <copy>
+                    <from>$inputVariable.payload/ns3:proposedActIdentifier</from>
+                    <to>$Invoke1_updateProposalStatus_InputVariable.InputParameters/ns2:P_ID</to>
+                  </copy>
+                  <copy>
+                    <from>'engagement'</from>
+                    <to>$Invoke1_updateProposalStatus_InputVariable.InputParameters/ns2:P_NEW_STATUS</to>
+                  </copy>
+                </assign>
+                <invoke name="CallUpdateStatus" bpelx:invokeAsDetail="no" partnerLink="updateProposalStatus"
+                        portType="ns1:updateProposalStatus_ptt" operation="updateProposalStatus"
+                        inputVariable="Invoke1_updateProposalStatus_InputVariable"
+                        xmlns:bpelx="http://schemas.oracle.com/bpel/extension"/>
+              </sequence>
+            </scope>
+            <scope name="CloseOtherProposalsForEvent">
+              <variables>
+                <variable name="InvokeCloseOtherProposals_closeOtherProposals_InputVariable"
+                          messageType="ns8:args_in_msg"/>
+              </variables>
+              <sequence name="Sequence10">
+                <assign name="Assign5">
+                  <copy>
+                    <from>$event</from>
+                    <to>$InvokeCloseOtherProposals_closeOtherProposals_InputVariable.InputParameters/ns9:P_EVENT</to>
+                  </copy>
+                  <copy>
+                    <from>$inputVariable.payload/ns3:proposedActIdentifier</from>
+                    <to>$InvokeCloseOtherProposals_closeOtherProposals_InputVariable.InputParameters/ns9:P_PROPOSAL_ID</to>
+                  </copy>
+                </assign>
+                <invoke name="InvokeCloseOtherProposals" bpelx:invokeAsDetail="no" partnerLink="closeOtherProposals"
+                        portType="ns8:closeOtherProposals_ptt" operation="closeOtherProposals"
+                        inputVariable="InvokeCloseOtherProposals_closeOtherProposals_InputVariable"/>
+              </sequence>
+            </scope>
+          </sequence>
+          <else>
+            <documentation>
+              <![CDATA[NotFeasible]]>
+            </documentation>
+            <sequence name="NotFeasibleStatusProposal">
+              <scope name="NotFeasibleStatusProposal">
+                <variables>
+                  <variable name="Invoke1_updateProposalStatus_InputVariable" messageType="ns1:args_in_msg"/>
+                </variables>
+                <sequence name="Sequence4">
+                  <assign name="setInput">
+                    <copy>
+                      <from>$inputVariable.payload/ns3:proposedActIdentifier</from>
+                      <to>$Invoke1_updateProposalStatus_InputVariable.InputParameters/ns2:P_ID</to>
+                    </copy>
+                    <copy>
+                      <from>'not feasible'</from>
+                      <to>$Invoke1_updateProposalStatus_InputVariable.InputParameters/ns2:P_NEW_STATUS</to>
+                    </copy>
+                  </assign>
+                  <invoke name="CallUpdateStatus" bpelx:invokeAsDetail="no" partnerLink="updateProposalStatus"
+                          portType="ns1:updateProposalStatus_ptt" operation="updateProposalStatus"
+                          inputVariable="Invoke1_updateProposalStatus_InputVariable"/>
+                </sequence>
+              </scope>
+            </sequence>
+          </else>
+        </if>
+      </sequence>
+    </scope>
+    <!-- 
+          Asynchronous callback to the requester. (Note: the callback location and correlation id is transparently handled using WS-addressing.)
+        -->
+    <invoke name="reportOutcome" partnerLink="negotiator" portType="client:NegotiatorCallback"
+            operation="processResponse" inputVariable="outputVariable"/>
+  </sequence>
+</process>
