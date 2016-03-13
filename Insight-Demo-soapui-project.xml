@@ -672,107 +672,7 @@
          <soas:ReturnReason>Lelijk</soas:ReturnReason>
       </soas:OrderReturn>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="execute"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Submit-Proposal-REST" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://10.10.10.29</con:endpoint></con:endpoints><con:resource name="SubmitArtistProposalService" path="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals"><con:settings/><con:parameters/><con:method name="SubmitArtistProposalService" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal">art:Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>500</con:status><con:params/></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "me21"
-                 , "event" : "Oracle OpenWorld 2016"
- , "numberOfVotes" : 19
- , "motivation" : "Mark likes them!"
- }
-} </con:request><con:originalUri>http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SubmitArtistProposalService-inner-SB" type="wsdl" bindingName="{http://xmlns.oracle.com/ArtistsForEvents/SubmitArtistProposalForEvent/SubmitArtistProposalService}SubmitArtistProposalService_ptt-binding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?wsdl"><con:part><con:url>http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="SubmitArtistProposalService" targetNamespace="http://xmlns.oracle.com/ArtistsForEvents/SubmitArtistProposalForEvent/SubmitArtistProposalService" xmlns:inp1="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request" xmlns:inp2="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_response" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://xmlns.oracle.com/ArtistsForEvents/SubmitArtistProposalForEvent/SubmitArtistProposalService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <plnk:partnerLinkType name="SubmitArtistProposalService">
-    <plnk:role name="SubmitArtistProposalServiceProvider" portType="tns:SubmitArtistProposalService_ptt"/>
-  </plnk:partnerLinkType>
-  <wsdl:types>
-    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <xsd:import namespace="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request" schemaLocation="http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?SCHEMA%2FSubmitArtistProposalForEvent%2FResources%2Fnxsd_json-artistProposal"/>
-    </xsd:schema>
-    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <xsd:import namespace="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_response" schemaLocation="http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?SCHEMA%2FSubmitArtistProposalForEvent%2FResources%2Fnxsd_json-artistProposal-response"/>
-    </xsd:schema>
-  </wsdl:types>
-  <wsdl:message name="submitArtistProposal_inputMessage">
-    <wsdl:part element="inp1:proposal" name="request"/>
-  </wsdl:message>
-  <wsdl:message name="submitArtistProposal_outputMessage">
-    <wsdl:part element="inp2:actProposal-response" name="reply"/>
-  </wsdl:message>
-  <wsdl:portType name="SubmitArtistProposalService_ptt">
-    <wsdl:operation name="submitArtistProposal">
-      <wsdl:input message="tns:submitArtistProposal_inputMessage"/>
-      <wsdl:output message="tns:submitArtistProposal_outputMessage"/>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="SubmitArtistProposalService_ptt-binding" type="tns:SubmitArtistProposalService_ptt">
-    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="submitArtistProposal">
-      <soap:operation soapAction="submitArtistProposal"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="SubmitArtistProposalService_ptt-bindingQSService">
-    <wsdl:documentation>OSB Service</wsdl:documentation>
-    <wsdl:port binding="tns:SubmitArtistProposalService_ptt-binding" name="SubmitArtistProposalService_ptt-bindingQSPort">
-      <soap:address location="http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration"/>
-    </wsdl:port>
-  </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?SCHEMA%2FSubmitArtistProposalForEvent%2FResources%2Fnxsd_json-artistProposal</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request" elementFormDefault="qualified" nxsd:version="JSON" nxsd:encoding="UTF-8" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd">
-  <xsd:element name="proposal">
-    <xsd:complexType>
-      <xsd:sequence>
-        <xsd:element name="proposedAct">
-          <xsd:complexType>
-            <xsd:sequence>
-              <xsd:element name="artist" type="xsd:string"/>
-              <xsd:element name="event" type="xsd:string"/>
-              <xsd:element name="numberOfVotes" type="xsd:integer"/>
-              <xsd:element name="motivation" type="xsd:string"/>
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-      </xsd:sequence>
-    </xsd:complexType>
-  </xsd:element>
-  <xsd:annotation xmlns="">
-    <xsd:appinfo>NXSDSAMPLE=/C:/data/Insight-demo-Valencia-march2016/ArtistsForEvents/SubmitArtistProposalForEvent/Resources/submitArtistProposal-request-sample.json</xsd:appinfo>
-    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
-  </xsd:annotation>
-</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration/?SCHEMA%2FSubmitArtistProposalForEvent%2FResources%2Fnxsd_json-artistProposal-response</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_response" elementFormDefault="qualified" nxsd:version="JSON" nxsd:encoding="US-ASCII" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_response" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd">
-  <xsd:element name="actProposal-response">
-    <xsd:complexType>
-      <xsd:sequence>
-        <xsd:element name="registeredActProposal">
-          <xsd:complexType>
-            <xsd:sequence>
-              <xsd:element name="artist" type="xsd:string"/>
-              <xsd:element name="event" type="xsd:string"/>
-              <xsd:element name="registrationId" type="xsd:integer"/>
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-      </xsd:sequence>
-    </xsd:complexType>
-  </xsd:element>
-  <xsd:annotation xmlns="">
-    <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
-    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
-  </xsd:annotation>
-</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration</con:endpoint></con:endpoints><con:operation isOneWay="false" action="submitArtistProposal" name="submitArtistProposal" bindingOperationName="submitArtistProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.10.29:7001/SubmitArtistProposalForEvent/SubmitProposalForRegistration</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sub="http://TargetNamespace.com/SubmitArtistProposalService_Operation1_request">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <sub:proposal>
-         <sub:proposedAct>
-            <sub:artist>Henk</sub:artist>
-            <sub:event>ODTUG</sub:event>
-            <sub:numberOfVotes>2</sub:numberOfVotes>
-            <sub:motivation>Seems like </sub:motivation>
-         </sub:proposedAct>
-      </sub:proposal>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitArtistProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="Propose Artist for Event (public, SOAP)" type="wsdl" bindingName="{http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline}execute_bind" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService/?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService/?wsdl"><con:part><con:url>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService/?wsdl</con:url><con:content><![CDATA[<WL5G3N0:definitions name="HandleArtistProposalPipeline" targetNamespace="http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="valencia.insight.demo" xmlns:WL5G3N2="http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="execute"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="Propose Artist for Event (public, SOAP)" type="wsdl" bindingName="{http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline}execute_bind" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService/?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService/?wsdl"><con:part><con:url>http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService/?wsdl</con:url><con:content><![CDATA[<WL5G3N0:definitions name="HandleArtistProposalPipeline" targetNamespace="http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="valencia.insight.demo" xmlns:WL5G3N2="http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/">
   <WL5G3N0:types>
     <xsd:schema xmlns:inp1="valencia.insight.demo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://xmlns.oracle.com/ProposeArtistForEvent/ProposeArtistSOAP/HandleArtistProposalPipeline" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <xsd:import namespace="valencia.insight.demo" schemaLocation="http://10.10.10.29:7001/ProposeArtistSOAP/HandleProposalPipelineProxyService/?SCHEMA%2FProposeArtistSOAP%2FProposeArtistService"/>
@@ -1023,19 +923,26 @@
    <soapenv:Body>
       <val:proposal>
          <val:proposedAct>
-            <val:artist>u5</val:artist>
-            <val:event>oow2016</val:event>
-            <val:numberOfVotes>1</val:numberOfVotes>
-            <val:motivation>last chance perhaps</val:motivation>
+            <val:artist>adele</val:artist>
+            <val:event>beyond the horizon 2016</val:event>
+            <val:numberOfVotes>26</val:numberOfVotes>
+            <val:motivation>You really need a motivation for this?</val:motivation>
          </val:proposedAct>
       </val:proposal>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendInProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://10.10.10.29:7001" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001</con:endpoint></con:endpoints><con:resource name="ArtistProposalAPI" path="/SendInArtistProposalAPI/ArtistProposalAPI/artistProposal"><con:settings/><con:parameters/><con:method name="ArtistProposalAPI" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=UTF-8</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal">art:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendInProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="SendInArtistProposal (REST, SB)" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:description>Post JSON to SB which routes to SOA</con:description><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001</con:endpoint></con:endpoints><con:resource name="ArtistProposalAPI" path="/SendInArtistProposalAPI/ArtistProposalAPI/artistProposal"><con:settings/><con:parameters/><con:method name="ArtistProposalAPI" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=UTF-8</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal">art:Response</con:element></con:representation><con:request name="abba-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
   "registeredActProposal" : {
     "artist" : "abba",
     "event" : "oow2016",
     "numberOfVotes" : 140,
-    "motivation" : "childhood memory"
+    "motivation" : "a reunion concert, would that not be great"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="adele-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "adele",
+    "event" : "oow2016",
+    "numberOfVotes" : 84,
+    "motivation" : "have the 25 album performed live - how cool is that!"
   }
 }</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="FindProposalsForEvent-ProposalsService (SOAP)" type="wsdl" bindingName="{http://oracle.com/sca/soapservice/ProcessArtistProposals/NegotiateAndEngage/ProposalsService}ProposalsServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService?WSDL"><con:part><con:url>http://10.10.10.29:7001/soa-infra/services/valencia-demo/NegotiateAndEngage/ProposalsService?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="ProposalsService" targetNamespace="http://oracle.com/sca/soapservice/ProcessArtistProposals/NegotiateAndEngage/ProposalsService" xmlns:tns="http://oracle.com/sca/soapservice/ProcessArtistProposals/NegotiateAndEngage/ProposalsService" xmlns:inp1="valencia.insight.demo/negotiation" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:documentation>
@@ -1124,29 +1031,9 @@
    <soapenv:Header/>
    <soapenv:Body>
       <neg:actProposalToEngage>
-         <neg:proposedActIdentifier>7</neg:proposedActIdentifier>
+         <neg:proposedActIdentifier>61</neg:proposedActIdentifier>
          <!--Optional:-->
          <neg:maximumFee>600000</neg:maximumFee>
       </neg:actProposalToEngage>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="Submit-Proposal-REST TestSuite"><con:description>TestSuite generated for REST Service [Submit-Proposal-REST]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="SubmitArtistProposalService TestCase" searchProperties="true"><con:description>TestCase generated for REST Resource [SubmitArtistProposalService] located at [/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal]</con:description><con:settings/><con:testStep type="restrequest" name="SimpleMinds-oow2016"><con:settings/><con:config service="Submit-Proposal-REST" resourcePath="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals" methodName="SubmitArtistProposalService" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="SimpleMinds-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "simple mind"
-                 , "event" : "Oracle OpenWorld 2016"
- , "numberOfVotes" : 1
- , "motivation" : "'For old times sake!"
- }
-} </con:request><con:originalUri>http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="TalkingHeads-oow2016"><con:settings/><con:config service="Submit-Proposal-REST" resourcePath="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals" methodName="SubmitArtistProposalService" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="TalkingHeads-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "talking heads"
-                 , "event" : "Oracle OpenWorld 2016"
- , "numberOfVotes" : 19
- , "motivation" : "'For old times sake!"
- }
-} </con:request><con:originalUri>http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Shakira-oow2016"><con:settings/><con:config service="Submit-Proposal-REST" resourcePath="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals" methodName="SubmitArtistProposalService" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Shakira-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "shakira"
-                 , "event" : "Oracle OpenWorld 2016"
- , "numberOfVotes" : 2
- , "motivation" : "It's time for Africa/Colombia"
- }
-} </con:request><con:originalUri>http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="RadioHead-oow2016"><con:settings/><con:config service="Submit-Proposal-REST" resourcePath="/RegisterArtistProposal/SubmitNewArtistForEvent/artistProposals" methodName="SubmitArtistProposalService" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="RadioHead-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{ "proposedAct": { "artist" : "radio head"
-                 , "event" : "Oracle OpenWorld 2016"
- , "numberOfVotes" : 2
- , "motivation" : "Cool!"
- }
-} </con:request><con:originalUri>http://10.10.10.29/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="Submit-Proposal-REST TestSuite"><con:description>TestSuite generated for REST Service [Submit-Proposal-REST]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="SubmitArtistProposalService TestCase" searchProperties="true"><con:description>TestCase generated for REST Resource [SubmitArtistProposalService] located at [/SubmitArtistProposalForEvent/SubmitArtistProposalService/ArtistProposal]</con:description><con:settings/><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

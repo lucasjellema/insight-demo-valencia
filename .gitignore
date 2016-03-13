@@ -1,2 +1,5 @@
 *.jdb
 *.lck
+*.log
+*.class
+classes/
