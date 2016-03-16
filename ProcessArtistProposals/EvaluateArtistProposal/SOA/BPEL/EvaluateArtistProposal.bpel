@@ -38,7 +38,9 @@
          xmlns:ns8="http://xmlns.oracle.com/bpel" xmlns:ns9="valencia.insight.artistProposals"
          xmlns:ns10="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/updateProposalStatus"
          xmlns:ns11="http://xmlns.oracle.com/pcbpel/adapter/db/sp/updateProposalStatus"
-         xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:ns12="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/verifyDupProposalInProcess"
+         xmlns:ns13="http://xmlns.oracle.com/pcbpel/adapter/db/sp/verifyDupProposalInProcess">
 
   <!-- 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,6 +63,8 @@
                  partnerLinkType="ns7:IDecisionService_PLT"/>
     <partnerLink name="updateProposalStatus" partnerLinkType="ns10:updateProposalStatus_plt"
                  partnerRole="updateProposalStatus_role"/>
+    <partnerLink name="verifyDupProposalInProcess" partnerLinkType="ns12:verifyDupProposalInProcess_plt"
+                 partnerRole="verifyDupProposalInProcess_role"/>
   </partnerLinks>
   <variables>
     <variable name="newArtistProposal" messageType="ns1:ProposedActsCollection_msg"/>
@@ -91,7 +95,7 @@
             <to>$Invoke-verifyExistence_verifyExistinceOfProposal_InputVariable.InputParameters/ns4:P_EVENT</to>
           </copy>
         </assign>
-        <invoke name="Invoke-verifyExistence" bpelx:invokeAsDetail="no" partnerLink="verifyExistinceOfProposal"
+        <invoke name="Invoke-verifyExistenceApproved" bpelx:invokeAsDetail="no" partnerLink="verifyExistinceOfProposal"
                 portType="ns2:verifyExistinceOfProposal_ptt" operation="verifyExistinceOfProposal"
                 inputVariable="Invoke-verifyExistence_verifyExistinceOfProposal_InputVariable"
                 outputVariable="Invoke-verifyExistence_verifyExistinceOfProposal_OutputVariable"/>
@@ -154,6 +158,42 @@
                             messageType="ns10:args_in_msg"/>
                 </variables>
                 <sequence name="Sequence4">
+                  <scope name="CheckDupProposalInProcess">
+                    <variables>
+                      <variable name="InvokeCheckDupInProcess_verifyDupProposalInProcess_InputVariable"
+                                messageType="ns12:args_in_msg"/>
+                      <variable name="InvokeCheckDupInProcess_verifyDupProposalInProcess_OutputVariable"
+                                messageType="ns12:args_out_msg"/>
+                    </variables>
+                    <sequence name="Sequence8">
+                      <assign name="Assign2">
+                        <copy>
+                          <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:id</from>
+                          <to>$InvokeCheckDupInProcess_verifyDupProposalInProcess_InputVariable.InputParameters/ns13:P_ID</to>
+                        </copy>
+                        <copy>
+                          <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:event</from>
+                          <to>$InvokeCheckDupInProcess_verifyDupProposalInProcess_InputVariable.InputParameters/ns13:P_EVENT</to>
+                        </copy>
+                        <copy>
+                          <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:name</from>
+                          <to>$InvokeCheckDupInProcess_verifyDupProposalInProcess_InputVariable.InputParameters/ns13:P_ACT_NAME</to>
+                        </copy>
+                      </assign>
+                      <invoke name="InvokeCheckDupInProcess" bpelx:invokeAsDetail="no"
+                              partnerLink="verifyDupProposalInProcess" portType="ns12:verifyDupProposalInProcess_ptt"
+                              operation="verifyDupProposalInProcess"
+                              inputVariable="InvokeCheckDupInProcess_verifyDupProposalInProcess_InputVariable"
+                              outputVariable="InvokeCheckDupInProcess_verifyDupProposalInProcess_OutputVariable"/>
+                      <if name="IfDupInProcess">
+                        <condition>$InvokeCheckDupInProcess_verifyDupProposalInProcess_OutputVariable.OutputParameters/ns13:P_ACT_IN_PROCESS_YN = 'Y'</condition>
+                        <throw name="ThrowDuplicateProcessedRightNow" faultName="bpel:conflictingReceive"/>
+                        <else>
+                          <empty name="Empty1"/>
+                        </else>
+                      </if>
+                    </sequence>
+                  </scope>
                   <assign name="AssignInput">
                     <copy>
                       <from>$newArtistProposal.ProposedActsCollection/ns3:ProposedActs/ns3:event</from>

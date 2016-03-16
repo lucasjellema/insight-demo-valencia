@@ -930,7 +930,124 @@
          </val:proposedAct>
       </val:proposal>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendInProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="SendInArtistProposal (REST, SB)" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:description>Post JSON to SB which routes to SOA</con:description><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001</con:endpoint></con:endpoints><con:resource name="ArtistProposalAPI" path="/SendInArtistProposalAPI/ArtistProposalAPI/artistProposal"><con:settings/><con:parameters/><con:method name="ArtistProposalAPI" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=UTF-8</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal">art:Response</con:element></con:representation>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendInProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="SendInArtistProposal (REST, SB)" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:description>Post JSON to SB which routes to SOA</con:description><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://10.10.10.29:7001</con:endpoint></con:endpoints><con:resource name="ArtistProposalAPI" path="/SendInArtistProposalAPI/ArtistProposalAPI/artistProposal"><con:settings/><con:parameters/><con:method name="ArtistProposalAPI-beyondTheHorizon2016" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=UTF-8</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal">art:Response</con:element></con:representation>
+
+<con:request name="abba-bth2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "abba",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 140,
+    "motivation" : "a reunion concert, would that not be great"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request>
+
+
+<con:request name="adele-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "adele",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 84,
+    "motivation" : "have the 25 album performed live - how cool is that!"
+  }
+}</con:request>
+<con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request>
+<con:request name="shakira-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "shakira",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 19,
+    "motivation" : "touch of Colombia"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="arianaGrande-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "ariana grande",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 1,
+    "motivation" : "more for rather young women than for our crowd"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request>
+<con:request name="duplicate-abba-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "abba",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 23,
+    "motivation" : "a reunion concert, would that not be great"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request>
+
+
+
+<con:request name="theaGilmore-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "thea gilmore",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 6,
+    "motivation" : "fairly unknown gem"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="queen-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "queen",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 69,
+    "motivation" : "yes, but not all of them"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="brunoMars-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "bruno mars",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 32,
+    "motivation" : "my sons would like that"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="maroon5-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "maroon 5",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 14,
+    "motivation" : "move like Jagger, but not pay for the real one"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="sting-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "sting",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 85,
+    "motivation" : "and please bring that great female singer again"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="toriAmos-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "tori amos",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 25,
+    "motivation" : "for my wife."
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="u2-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "u2",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 125,
+    "motivation" : "very nice; challenging, budgetwise."
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="stromae-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "stromae",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 75,
+    "motivation" : "original at the very least."
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="djTiesto-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "dj tiesto",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 7,
+    "motivation" : "have a party"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="murrayHead-beyond the horizon 2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
+  "registeredActProposal" : {
+    "artist" : "murray head",
+    "event" : "beyond the horizon 2016",
+    "numberOfVotes" : 2,
+    "motivation" : "not really happening anymore"
+  }
+}</con:request><con:originalUri>http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method><con:method name="ArtistProposalAPI-oow2016" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=UTF-8</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/xml</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:err="http://www.bea.com/wli/sb/errors">err:RestError</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://10.10.10.29/SendInArtistProposalAPI/Resources/ArtistProposalAPI/artistProposal">art:Response</con:element></con:representation>
 
 <con:request name="abba-oow2016" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://10.10.10.29:7001</con:endpoint><con:request>{
   "registeredActProposal" : {
@@ -1120,7 +1237,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <neg:actProposalToEngage>
-         <neg:proposedActIdentifier>21</neg:proposedActIdentifier>
+         <neg:proposedActIdentifier>44</neg:proposedActIdentifier>
          <!--Optional:-->
          <neg:maximumFee>1600000</neg:maximumFee>
       </neg:actProposalToEngage>

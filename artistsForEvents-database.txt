@@ -100,6 +100,14 @@ procedure verify_proposal_for_act
 , p_id out number
 );
 
+
+procedure dup_in_process_proposal
+( p_act_name in out varchar2
+, p_event in varchar2
+, p_act_in_process_yn out varchar2
+, p_id in number
+);
+
 end act_proposal_api;
 
 create or replace
@@ -241,6 +249,35 @@ begin
 	   p_act_proposed_yn:= 'N';
   end;
 end verify_proposal_for_act;
+
+
+procedure dup_in_process_proposal
+( p_act_name in out varchar2
+, p_event in varchar2
+, p_act_in_process_yn out varchar2
+, p_id in number
+) is
+  l_id number(20);
+begin
+
+  begin
+    select pa.id
+	into   l_id
+	from   proposed_acts pa
+	where  upper(pa.name) = upper(p_act_name)
+	and    upper(pa.event) = upper(p_event)
+	and    pa.id != p_id /* do not match against the thing itself */
+	and    status not in ('rejected','approved', 'invalid' ) 
+	and    rownum = 1 /* prevent too many rows */
+	;
+	p_act_in_process_yn:= 'Y';
+
+  exception
+     when no_data_found
+	 then
+	   p_act_in_process_yn:= 'N';
+  end;
+end dup_in_process_proposal;
 
 
 end act_proposal_api;

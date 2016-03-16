@@ -21,6 +21,8 @@
           location="WSDLs/ArtistProposalRules_DecisionService_1.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/updateProposalStatus"
           location="WSDLs/updateProposalStatus.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/verifyDupProposalInProcess"
+          location="WSDLs/verifyDupProposalInProcess.wsdl" importType="wsdl"/>
   <service name="processNewArtistProposals" ui:wsdlLocation="WSDLs/processNewArtistProposals.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/processNewArtistProposals#wsdl.interface(processNewArtistProposals_ptt)"/>
     <binding.jca config="Adapters/processNewArtistProposals_db.jca">
@@ -51,6 +53,9 @@
       </reference>
       <reference name="updateProposalStatus" ui:wsdlLocation="WSDLs/updateProposalStatus.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/updateProposalStatus#wsdl.interface(updateProposalStatus_ptt)"/>
+      </reference>
+      <reference name="verifyDupProposalInProcess" ui:wsdlLocation="WSDLs/verifyDupProposalInProcess.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/verifyDupProposalInProcess#wsdl.interface(verifyDupProposalInProcess_ptt)"/>
       </reference>
     </componentType>
     <property name="bpel.config.oneWayDeliveryPolicy" type="xs:string" many="false">async.persist</property>
@@ -88,6 +93,14 @@
     <property name="jca.retry.backoff" type="xs:int" many="false" override="may">2</property>
     <property name="jca.retry.maxInterval" type="xs:int" many="false" override="may">120</property>
   </reference>
+  <reference name="verifyDupProposalInProcess" ui:wsdlLocation="WSDLs/verifyDupProposalInProcess.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProcessArtistProposals/EvaluateArtistProposal/verifyDupProposalInProcess#wsdl.interface(verifyDupProposalInProcess_ptt)"/>
+    <binding.jca config="Adapters/verifyDupProposalInProcess_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false" override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false" override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:int" many="false" override="may">120</property>
+  </reference>
   <wire>
     <source.uri>processNewArtistProposals</source.uri>
     <target.uri>EvaluateArtistProposal/processNewArtistProposals</target.uri>
@@ -107,5 +120,9 @@
   <wire>
     <source.uri>EvaluateArtistProposal/updateProposalStatus</source.uri>
     <target.uri>updateProposalStatus</target.uri>
+  </wire>
+  <wire>
+    <source.uri>EvaluateArtistProposal/verifyDupProposalInProcess</source.uri>
+    <target.uri>verifyDupProposalInProcess</target.uri>
   </wire>
 </composite>
